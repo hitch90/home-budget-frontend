@@ -1,0 +1,12 @@
+.nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    left: -220px;
+    transition: left 0.3s;
+    background: var(--nav-bg);
+    &:hover {
+        left: 0;
+    }
+}
