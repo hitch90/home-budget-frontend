@@ -9,4 +9,28 @@
     &:hover {
         left: 0;
     }
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    &__link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0 0 0 10px;
+        color: #fff;
+        line-height: 50px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    &__icon {
+        width: 60px;
+        text-align: center;
+        margin: 0 0 0 auto;
+        i {
+            display: block;
+            line-height: 50px;
+        }
+    }
 }
