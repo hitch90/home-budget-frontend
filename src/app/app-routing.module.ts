@@ -1,20 +1,12 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [
-    {
-        path: '',
-        component: DashboardComponent
-    },
-];
+const routes: Routes = [];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-    declarations: []
+    imports: [RouterModule.forRoot(routes, {
+        preloadingStrategy: PreloadAllModules
+    })],
+    exports: [RouterModule]
 })
-
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

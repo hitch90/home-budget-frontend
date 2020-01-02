@@ -29,6 +29,7 @@
     --header-border-color: #e6e6e6;
     --header-label-bg: #48b0f7;
     --btn-primary: #6d5cae;
+    --dashboard-widget-title-color: #333;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -36,7 +37,8 @@
     --breakpoint-xl: 1200px;
 }
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Segoe UI",Arial,sans-serif;
+    background-color: #fafafa;
 }
 .page-container {
     padding: 0 0 0 60px;

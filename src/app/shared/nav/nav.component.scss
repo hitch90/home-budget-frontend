@@ -6,6 +6,7 @@
     left: -220px;
     transition: left 0.3s;
     background: var(--nav-bg);
+    z-index: 99;
     &:hover {
         left: 0;
     }
