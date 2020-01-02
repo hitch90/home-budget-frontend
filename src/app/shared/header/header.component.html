@@ -2,4 +2,43 @@
     <div class="header__logo">
         <img src="../../../assets/logo.png" alt="Logo" />
     </div>
+    <div class="header__balance">
+        <span class="header__label">
+            stan konta
+        </span>
+        1230 zł
+    </div>
+    <div class="header__add">
+        <button class="header__add-btn" (click)="toggleAddNav()">
+            <i class="material-icons">
+                add
+            </i>
+        </button>
+        <ul class="header__list" *ngIf="addNav" [@inOutAnimation]>
+            <li class="header__list-item">
+                <a href="#" class="header__list-link">
+                    <span class="header__list-icon">
+                        <i class="material-icons">
+                            trending_down
+                        </i>
+                    </span>
+                    <span class="header__list-text">
+                        Koszt
+                    </span>
+                </a>
+            </li>
+            <li class="header__list-item">
+                <a href="#" class="header__list-link">
+                    <span class="header__list-icon">
+                        <i class="material-icons">
+                            trending_up
+                        </i>
+                    </span>
+                    <span class="header__list-text">
+                        Dochód
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </header>
