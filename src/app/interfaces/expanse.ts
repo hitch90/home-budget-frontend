@@ -1,2 +1,8 @@
-export interface Expanse {
+export interface IExpanse {
+    name: string;
+    description?: string;
+    currency: string;
+    value: number;
+    category: number;
+    image?: string;
 }

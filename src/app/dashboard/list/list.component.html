@@ -21,4 +21,10 @@
             </div>
         </li>
     </ul>
+    <div class="dashboard__widget-loading" *ngIf="!list">
+        <i class="material-icons">
+            error_outline
+        </i>
+        <h3>Brak wpisów</h3>
+    </div>
 </div>

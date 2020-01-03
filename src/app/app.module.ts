@@ -6,6 +6,8 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from './forms/forms.module';
+import { FormsRoutingModule } from './forms/forms-routing.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -15,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
         AppRoutingModule,
         SharedModule,
         DashboardModule,
-        DashboardRoutingModule
+        DashboardRoutingModule,
+        FormsModule,
+        FormsRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]

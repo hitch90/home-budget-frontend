@@ -16,7 +16,7 @@
         </button>
         <ul class="header__list" *ngIf="addNav" [@inOutAnimation]>
             <li class="header__list-item">
-                <a href="#" class="header__list-link">
+                <a [routerLink]="['add', 'expense']" class="header__list-link">
                     <span class="header__list-icon">
                         <i class="material-icons">
                             trending_down
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="header__list-item">
-                <a href="#" class="header__list-link">
+                <a [routerLink]="['add', 'income']" class="header__list-link">
                     <span class="header__list-icon">
                         <i class="material-icons">
                             trending_up
