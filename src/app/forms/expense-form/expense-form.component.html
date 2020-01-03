@@ -1,0 +1,32 @@
+<form class="adding-form" [formGroup]="expenseForm" (submit)="submit()">
+    <h2 class="forms-title">
+        Dodaj zakup
+    </h2>
+    <app-alert type="error" *ngIf="status === 'not-ok'" text="Wystąpił błąd, spróbuj ponownie"></app-alert>
+    <div class="input">
+        <label for="name">
+            Nazwa
+        </label>
+        <input type="text" name="name" id="name" formControlName="name"/>
+    </div>
+    <div class="input">
+        <label for="value">
+            Wartość
+        </label>
+        <div class="input-group">
+            <input type="number" name="value" id="value" formControlName="value"/>
+            <input type="text" name="currency" id="currency" formControlName="currency"/>
+        </div>
+    </div>
+    <div class="input">
+        <label for="category">
+            Kategoria
+        </label>
+        <select id="category" formControlName="category">
+            <option value="">Wybierz</option>
+            <option value="">Paliwo</option>
+            <option value="">Dom</option>
+        </select>
+    </div>
+    <button type="submit" class="button button--primary">Dodaj</button>
+</form>
