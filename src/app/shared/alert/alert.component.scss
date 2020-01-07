@@ -6,6 +6,7 @@
     font-size: 13px;
     border-width: 0;
     transition: all .2s linear 0s;
+    margin-bottom: 15px;
     h3 {
         font-size: 13px;
         margin:  0;
@@ -18,5 +19,10 @@
 
         color: #933432;
         border-color: #933432;
+    }
+    &.success {
+        background-color: #cff5f2;
+        color: #0a7c71;
+        border-color: #0a7c71;
     }
 }

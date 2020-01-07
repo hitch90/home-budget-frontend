@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../../services/expense.service';
+import { CategoryService } from '../../services/category.service';
+import { Observable } from 'rxjs';
+import { AccountService } from '../../services/account.service';
+import dayjs = require('dayjs');
 
 @Component({
     selector: 'app-expense-form',
@@ -10,12 +14,18 @@ import { ExpenseService } from '../../services/expense.service';
 export class ExpenseFormComponent implements OnInit {
     expenseForm: FormGroup;
     status: string;
+    categories$: Observable<any>;
+    accounts$: Observable<any>;
     constructor(
         private formBuilder: FormBuilder,
-        private expenseService: ExpenseService
+        private expenseService: ExpenseService,
+        private categoryService: CategoryService,
+        private accountService: AccountService
     ) {}
 
     ngOnInit() {
+        this.categories$ = this.categoryService.findAll();
+        this.accounts$ = this.accountService.findAll();
         this.expenseForm = this.buildForm();
     }
 
@@ -26,14 +36,25 @@ export class ExpenseFormComponent implements OnInit {
             category: ['', Validators.required],
             image: [''],
             value: [0, Validators.required],
-            currency: ['pln', Validators.required]
+            currency: ['pln', Validators.required],
+            account: ['', Validators.required],
+            date: ['', Validators.required]
         });
     }
 
     submit() {
-        this.expenseService.create(this.expenseForm.getRawValue()).subscribe(
-            () => (this.status = 'ok'),
-            () => (this.status = 'not-ok')
-        );
+        const values = this.expenseForm.getRawValue();
+        this.expenseService
+            .create({
+                ...values,
+                date: dayjs(values.date).format('YYYY-MM-DD')
+            })
+            .subscribe(
+                () => {
+                    this.status = 'ok';
+                    this.expenseForm.reset();
+                },
+                () => (this.status = 'not-ok')
+            );
     }
 }

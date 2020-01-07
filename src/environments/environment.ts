@@ -4,12 +4,17 @@
 
 export const environment = {
     production: false,
-    api_url: 'http://localhost:3000',
+    //api_url: 'http://localhost:3000', 
+    api_url: 'https://trezy-api.hitch90.now.sh',
     routes: {
         incomes: 'incomes',
         income: 'income',
         expenses: 'expenses',
         expense: 'expense',
-        category: 'categories'
-    }
+        category: 'category',
+        categories: 'categories',
+        account: 'account',
+        accounts: 'accounts'
+    },
+    password: 'd41d8cd98f00b204e9800998ecf8427e',
 };

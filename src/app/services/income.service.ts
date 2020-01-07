@@ -15,8 +15,20 @@ export class IncomeService {
     findAll(limit = 0) {
         return this.httpClient.get(this.incomesRoute + `?limit=${limit}`);
     }
+    
+    findByDates(from, to) {
+        return this.httpClient.get(this.incomesRoute + `?date_start=${from}&date_end=${to}`);
+    }
 
     findOne(id: number) {
         return this.httpClient.get(this.incomeRoute + '/' + id);
+    }
+    
+    delete(id: number) {
+        return this.httpClient.delete(this.incomeRoute + `/${id}`);
+    }
+    
+    create(income) {
+        return this.httpClient.post(this.incomeRoute, income);
     }
 }

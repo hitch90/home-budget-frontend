@@ -1,0 +1,70 @@
+::ng-deep {
+    .generic-list {
+        width: 100%;
+        padding: 20px;
+        color: #333;
+        &__title {
+            font: 600 13px/20px 'Montserrat';
+            padding: 0 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        &__table {
+            width: 100%;
+        }
+        &__filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-bottom: 20px;
+        }
+        &__dateFilter {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .input {
+            background-color: #fff;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            border-radius: 2px;
+            width: auto;
+            transition: background-color 0.2s ease;
+            padding: 7px 12px 4px;
+            margin: 0;
+            .input-group {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            label {
+                width: 100%;
+                font-family: 'Montserrat';
+                font-size: 10.5px;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+                font-weight: 500;
+                line-height: 10px;
+                margin: 0;
+                padding: 0;
+            }
+            input, select {
+                display: block;
+                width: 100%;
+                border: none;
+                min-height: 25px;
+                margin-top: 0;
+                background-color: #fff;
+                color: #2c2c2c;
+                outline: 0;
+                line-height: normal;
+                font-size: 14px;
+                font-weight: 400;
+                vertical-align: middle;
+                transition: all 0.12s ease;
+                box-shadow: none;
+                padding: 0 3px;
+            }
+        }
+    }
+
+}

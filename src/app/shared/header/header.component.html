@@ -1,12 +1,14 @@
 <header class="header">
     <div class="header__logo">
-        <img src="../../../assets/logo.png" alt="Logo" />
+        <a routerLink="/">
+            <img src="../../../assets/logo.png" alt="Logo" />
+        </a>
     </div>
     <div class="header__balance">
         <span class="header__label">
             stan konta
         </span>
-        1230 zł
+        {{ balance.toFixed(2) }} pln
     </div>
     <div class="header__add">
         <button class="header__add-btn" (click)="toggleAddNav()">
@@ -14,7 +16,7 @@
                 add
             </i>
         </button>
-        <ul class="header__list" *ngIf="addNav" [@inOutAnimation]>
+        <ul class="header__list" *ngIf="addNav" [@inOutAnimation] (click)="addNav = false">
             <li class="header__list-item">
                 <a [routerLink]="['add', 'expense']" class="header__list-link">
                     <span class="header__list-icon">
@@ -36,6 +38,43 @@
                     </span>
                     <span class="header__list-text">
                         Dochód
+                    </span>
+                </a>
+            </li>
+            <li class="header__list-item">
+                <a [routerLink]="['add', 'account']" class="header__list-link">
+                    <span class="header__list-icon">
+                       <i class="material-icons">
+                           attach_money
+                       </i>
+                    </span>
+                    <span class="header__list-text">
+                        Konto
+                    </span>
+                </a>
+            </li>
+            <li class="header__list-item">
+                <a [routerLink]="['add', 'category']" class="header__list-link">
+                    <span class="header__list-icon">
+                       <i class="material-icons">
+                           category
+                       </i>
+                    </span>
+                    <span class="header__list-text">
+                        Kategorie
+                    </span>
+                </a>
+            </li>
+
+            <li class="header__list-item">
+                <a [routerLink]="['add', 'transfer']" class="header__list-link">
+                    <span class="header__list-icon">
+                       <i class="material-icons">
+                           transform
+                       </i>
+                    </span>
+                    <span class="header__list-text">
+                        Transfer
                     </span>
                 </a>
             </li>

@@ -17,7 +17,11 @@ export class ExpenseService {
     findAll(limit = 0): Observable<any> {
         return this.httpClient.get(this.expensesRoute + `?limit=${limit}`);
     }
-
+    
+    findByDates(from, to) {
+        return this.httpClient.get(this.expensesRoute + `?date_start=${from}&date_end=${to}`);
+    }
+    
     findOne(id: number): Observable<any> {
         return this.httpClient.get(this.expenseRoute + '/' + id);
     }
@@ -25,4 +29,9 @@ export class ExpenseService {
     create(expense: IExpanse): Observable<any> {
         return this.httpClient.post(this.expenseRoute, expense);
     }
+
+    delete(id: number) {
+        return this.httpClient.delete(this.expenseRoute + `/${id}`);
+    }
+    
 }

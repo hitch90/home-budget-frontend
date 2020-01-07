@@ -1,7 +1,7 @@
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a [routerLink]="['list', 'expense']" class="nav__link">
                 <span>Wydatki</span>
                 <span class="nav__icon">
                     <i class="material-icons">
@@ -11,7 +11,7 @@
             </a>
         </li>
         <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a [routerLink]="['list', 'income']" class="nav__link">
                 <span>Dochody</span>
                 <span class="nav__icon">
                     <i class="material-icons">
@@ -21,11 +21,21 @@
             </a>
         </li>
         <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a [routerLink]="['list', 'category']" class="nav__link">
                 <span>Kategorie</span>
                 <span class="nav__icon">
                     <i class="material-icons">
                         category
+                    </i>
+                </span>
+            </a>
+        </li>
+        <li class="nav__item">
+            <a [routerLink]="['list', 'account']" class="nav__link">
+                <span>Konta</span>
+                <span class="nav__icon">
+                    <i class="material-icons">
+                        attach_money
                     </i>
                 </span>
             </a>

@@ -5,4 +5,45 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 20px;
     }
+    &__accounts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        align-self: flex-start;
+        grid-row: span 2;
+    }
+    &__charts {
+        grid-column: span 2;
+    }
+    &__account {
+        background: var(--dark);
+        &:nth-child(1) {
+            background: var(--primary);
+        }
+        &:nth-child(2) {
+            background: var(--teal);
+        }
+        &:nth-child(3) {
+            background: var(--cyan);
+        }
+        &:nth-child(4) {
+            background: var(--cyan);
+        }
+        &.ing {
+            background: #ff6200 url('../../../assets/ing.png') no-repeat 80% bottom;
+        }
+        &.pekao {
+            background: #D71921 url('../../../assets/pekao.png') no-repeat 80% bottom;
+        }
+        &.pko {
+            background: #004C9A url('../../../assets/pko.png') no-repeat 70% bottom;
+        }
+        &.revolut {
+            background: #0DB1E6 url('../../../assets/revolut.png') no-repeat 70% bottom;
+            background-size: 40%;
+            &.business {
+                background: var(--dark);
+            }
+        }
+    }
 }

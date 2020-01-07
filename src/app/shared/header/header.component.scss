@@ -20,6 +20,7 @@
         text-transform: uppercase;
         display: block;
         padding: 2px 3px;
+        text-align: left;
     }
     &__add {
         margin: 0 0 0 auto;
@@ -50,6 +51,7 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        z-index: 100;
         &-item {
             
         }

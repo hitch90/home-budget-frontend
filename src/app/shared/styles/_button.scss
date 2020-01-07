@@ -24,6 +24,7 @@
     transition: color .1s linear 0s,background-color .1s linear 0s,opacity .2s linear 0s;
     padding: 6px 17px;
     display: inline-block;
+    text-decoration: none;
     &--primary {
         color: #fff;
         background-color: #6d5cae;
@@ -31,6 +32,19 @@
         &:hover {
             background-color: #8a7dbe;
             border-color: #8a7dbe;
+            color: #fff;
+        }
+    }
+    & + .button {
+        margin-left: 15px;
+    }
+    &--secondary {
+        color: #fff;
+        background-color: #c82333 ;
+        border-color: #c82333 ;
+        &:hover {
+            background-color: #f77975;
+            border-color: #f77975;
             color: #fff;
         }
     }

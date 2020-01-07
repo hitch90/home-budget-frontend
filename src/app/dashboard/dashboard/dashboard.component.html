@@ -1,6 +1,18 @@
 <div class="dashboard">
     <div class="dashboard__container">
-        <app-list [list]="expenses$ | async" title="Ostatnie wydatki"></app-list>
+        <app-list
+            [list]="expenses$ | async"
+            title="Ostatnie wydatki"
+        ></app-list>
         <app-list [list]="income$ | async" title="Ostatnie wpływy"></app-list>
+        <div class="dashboard__accounts">
+            <app-account-widget
+                [class]="'dashboard__account ' + account.name.toLowerCase()"
+                *ngFor="let account of accounts$ | async"
+                [account]="account"
+                (delete)="deleteAccount($event)"
+            ></app-account-widget>
+        </div>
+        <app-charts [data]="[expenses$, income$]" title="Bilans miesięczny (rok)" class="dashboard__charts"></app-charts>
     </div>
 </div>

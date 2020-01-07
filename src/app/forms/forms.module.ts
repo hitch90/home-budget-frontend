@@ -9,6 +9,10 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
+import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
+import { CategoryFormComponent } from './category-form/category-form.component';
+import { TransferFormComponent } from './transfer-form/transfer-form.component';
+;
 
 @NgModule({
     imports: [
@@ -17,13 +21,18 @@ import {SharedModule} from '../shared/shared.module';
         CommonModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        SharedModule
+        SharedModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     declarations: [
         FormsComponent,
         IncomeFormComponent,
         ExpenseFormComponent,
-        AccountFormComponent
+        AccountFormComponent,
+        CategoryFormComponent,
+        TransferFormComponent
     ],
     exports: []
 })

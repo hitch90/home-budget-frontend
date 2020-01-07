@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -31,9 +32,13 @@ import {animate, style, transition, trigger} from '@angular/animations';
 })
 export class HeaderComponent implements OnInit {
     addNav = false;
-  constructor() { }
+    balance = 0;
+  constructor(
+      private accountService: AccountService
+  ) { }
 
   ngOnInit() {
+      this.accountService.balance().subscribe(data => this.balance = data);
   }
   
   toggleAddNav() {

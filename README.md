@@ -2,6 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
+
+## Config
+
+Before start you have to set environments file with API routes and password (md5 hash). Sample config: 
+```
+export const environment = {
+    production: false,
+    api_url: 'http://localhost:3000',
+    routes: {
+        incomes: 'incomes',
+        income: 'income',
+        expenses: 'expenses',
+        expense: 'expense',
+        category: 'category',
+        categories: 'categories',
+        account: 'account',
+        accounts: 'accounts'
+    },
+    password: '2278a0f743d90e23b2fb4d009e6af10a', // Demo123
+};
+```
+Path: `src/environments/environments.ts`
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -8,9 +8,14 @@ import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from './forms/forms.module';
 import { FormsRoutingModule } from './forms/forms-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListModule } from './list/list.module';
+import { ListRoutingModule } from './list/list-routing.module';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth.service';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, LoginComponent],
     imports: [
         BrowserModule,
         HttpClientModule,
@@ -19,9 +24,12 @@ import { FormsRoutingModule } from './forms/forms-routing.module';
         DashboardModule,
         DashboardRoutingModule,
         FormsModule,
-        FormsRoutingModule
+        FormsRoutingModule,
+        ListModule,
+        ListRoutingModule,
+        BrowserAnimationsModule
     ],
-    providers: [],
+    providers: [AuthGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
