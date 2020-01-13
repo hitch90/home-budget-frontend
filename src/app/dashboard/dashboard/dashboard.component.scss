@@ -1,19 +1,30 @@
 .dashboard {
     &__container {
         padding: 20px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 20px;
+        @media (min-width: 1000px) {
+            grid-template-columns: 1fr 1fr 1fr;
+            display: grid;
+            grid-gap: 20px;
+        }
     }
     &__accounts {
+        margin-bottom: 20px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 20px;
-        align-self: flex-start;
-        grid-row: span 2;
+        @media (min-width: 1000px) {
+            margin-bottom: 0;
+            align-self: flex-start;
+            grid-row: span 2;
+            grid-template-columns: 1fr 1fr;
+        }
     }
     &__charts {
-        grid-column: span 2;
+        margin-bottom: 20px;
+        @media (min-width: 1000px) {
+            margin-bottom: 0;
+            grid-column: span 2;
+        }
     }
     &__account {
         background: var(--dark);

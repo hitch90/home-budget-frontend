@@ -8,7 +8,9 @@
     background: var(--nav-bg);
     z-index: 99;
     &:hover {
-        left: 0;
+        @media (min-width: 1000px) {
+            left: 0;
+        }
     }
     &__list {
         margin: 0;

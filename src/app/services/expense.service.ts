@@ -22,6 +22,10 @@ export class ExpenseService {
         return this.httpClient.get(this.expensesRoute + `?date_start=${from}&date_end=${to}`);
     }
     
+    findByMonth(month) {
+        return this.httpClient.get(this.expensesRoute + `?month=${month}`);
+    }
+    
     findOne(id: number): Observable<any> {
         return this.httpClient.get(this.expenseRoute + '/' + id);
     }

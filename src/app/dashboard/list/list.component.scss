@@ -1,5 +1,9 @@
 .dashboard__widget {
     background: var(--white);
+    margin-bottom: 20px;
+    @media (min-width: 1000px) {
+        margin-bottom: 0;
+    }
     &-title {
         font-size: 11px;
         font-weight: 500;
@@ -15,13 +19,15 @@
         padding: 0;
         position: relative;
         &::before {
-            width: 2px;
-            top: 0;
-            bottom: 0;
-            left: 70px;
-            background: var(--gray-dark);
-            position: absolute;
-            content: '';
+            @media (min-width: 1000px) {
+                width: 2px;
+                top: 0;
+                bottom: 0;
+                left: 70px;
+                background: var(--gray-dark);
+                position: absolute;
+                content: '';
+            }
         }
         &-item {
             display: flex;
@@ -30,22 +36,27 @@
             padding: 8px 0;
             color: #333;
             &::before {
-                content: '';
-                position: absolute;
-                top: calc(50% - 5px);
-                width: 10px;
-                height: 10px;
-                background: var(--gray);
-                left: 66px;
-                border-radius: 50%;
+                @media (min-width: 1000px) {
+                    content: '';
+                    position: absolute;
+                    top: calc(50% - 5px);
+                    width: 10px;
+                    height: 10px;
+                    background: var(--gray);
+                    left: 66px;
+                    border-radius: 50%;
+                }
             }
             &-date {
-                width: 50px;
                 display: block;
                 text-align: right;
-                margin-right: 40px;
                 font-size: 11px;
                 font-weight: bold;
+                margin-right: 15px;
+                @media (min-width: 1000px) {
+                    width: 50px;
+                    margin-right: 40px;
+                }
             }
             &-name {
                 font-size: 13px;
@@ -60,13 +71,14 @@
                 opacity: 0.8;
             }
             &-value {
-                position: absolute;
-                top: calc(50% - 15px);
-                right: 0;
-                line-height: 30px;
                 color: var(--secondary);
-                font: 600 13px/30px 'Montserrat';
-                
+                font: 600 13px/20px 'Montserrat';
+                @media (min-width: 1000px) {
+                    font: 600 13px/30px 'Montserrat';
+                    position: absolute;
+                    top: calc(50% - 15px);
+                    right: 0;
+                }
             }
         }
     }

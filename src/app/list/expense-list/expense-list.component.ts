@@ -38,7 +38,8 @@ export class ExpenseListComponent implements OnInit {
     }
     
     loadList() {
-        this.expenseService.findAll().subscribe((data: any[]) => {
+        const currentMonth = new Date().getMonth() + 1;
+        this.expenseService.findByMonth(currentMonth).subscribe((data: any[]) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.sort = this.sort;
         });
