@@ -8,7 +8,7 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         pathMatch: 'full',
-        canActivate : [AuthGuardService],
+        //canActivate : [AuthGuardService],
     }
 ];
 

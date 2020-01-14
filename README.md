@@ -23,7 +23,7 @@ export const environment = {
     password: '2278a0f743d90e23b2fb4d009e6af10a', // Demo123
 };
 ```
-Path: `src/environments/environments.ts`
+Path: `src/environments/environment.ts`
 
 
 ## Development server
