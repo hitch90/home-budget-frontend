@@ -2,7 +2,10 @@
     <h2 class="dashboard__widget-title">
         {{ title }}
     </h2>
-    <ul class="dashboard__widget-list">
+    <div class="dashboard__widget-loader" *ngIf="!list">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <ul class="dashboard__widget-list" *ngIf="list">
         <li class="dashboard__widget-list-item" *ngFor="let item of list">
             <span class="dashboard__widget-list-item-date">
                 {{ parseDate(item.date )}}
@@ -21,7 +24,7 @@
             </div>
         </li>
     </ul>
-    <div class="dashboard__widget-loading" *ngIf="!list">
+    <div class="dashboard__widget-loading" *ngIf="list !== null && list.length === 0">
         <i class="material-icons">
             error_outline
         </i>

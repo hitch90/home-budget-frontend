@@ -7,7 +7,7 @@ import dayjs = require('dayjs');
     styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-    @Input() list: any[];
+    @Input() list: any[] = null;
     @Input() title: string;
     constructor() {}
 
