@@ -21,6 +21,14 @@ export class ExpenseService {
     findByDates(from, to) {
         return this.httpClient.get(this.expensesRoute + `?date_start=${from}&date_end=${to}`);
     }
+
+    findByAccount(id) {
+        return this.httpClient.get(this.expensesRoute + `?account=${id}`);
+    }
+        
+    findByCategory(id) {
+        return this.httpClient.get(this.expensesRoute + `?category=${id}`);
+    }
     
     findByMonth(month) {
         return this.httpClient.get(this.expensesRoute + `?month=${month}`);

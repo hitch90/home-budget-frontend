@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import {
     MatDatepickerModule,
     MatFormFieldModule,
-    MatNativeDateModule, MatSortModule, MatTableModule, MatTooltipModule
+    MatNativeDateModule, MatSelectModule, MatSortModule, MatTableModule, MatTooltipModule
 } from '@angular/material';
 import { AccountListComponent } from './account-list/account-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
@@ -29,7 +29,8 @@ import { ListPageComponent } from './list-page/list-page.component';
         MatNativeDateModule,
         MatTableModule,
         MatSortModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSelectModule
     ],
     declarations: [
         AccountListComponent,

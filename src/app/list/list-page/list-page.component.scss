@@ -31,6 +31,20 @@
                 align-items: flex-end;
             }
         }
+        &__selectFilters {
+           align-self: flex-end;
+            @media (min-width: 1000px) {
+                display: flex;
+            }
+        }
+        &__accountFilter,
+        &__categoryFilter {
+            width: 100%;
+            @media (min-width: 1000px) {
+                width: auto;
+                margin: 0 15px;
+            }
+        }
         .input {
             background-color: #fff;
             position: relative;

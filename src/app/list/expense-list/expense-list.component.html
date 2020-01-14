@@ -12,8 +12,15 @@
                     Data od
                 </label>
                 <div class="input-group">
-                    <input [matDatepicker]="from" placeholder="Choose a date" formControlName="from" />
-                    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                    <input
+                        [matDatepicker]="from"
+                        placeholder="Choose a date"
+                        formControlName="from"
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="from"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #from></mat-datepicker>
                 </div>
             </div>
@@ -22,26 +29,76 @@
                     Data do
                 </label>
                 <div class="input-group">
-                    <input [matDatepicker]="to" placeholder="Choose a date" formControlName="to" />
-                    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                    <input
+                        [matDatepicker]="to"
+                        placeholder="Choose a date"
+                        formControlName="to"
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="to"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #to></mat-datepicker>
                 </div>
             </div>
-            <button type="submit" (click)="submit()" class="button button--primary">Filtruj</button>
+            <button
+                type="submit"
+                (click)="submit()"
+                class="button button--primary"
+            >
+                Filtruj
+            </button>
+        </div>
+        <div class="generic-list__selectFilters">
+            <mat-form-field class="generic-list__accountFilter">
+                <mat-label>Konto</mat-label>
+                <mat-select (selectionChange)="selectAccount($event)">
+                    <mat-option value="">Wszystkie</mat-option>
+                    <mat-option
+                        *ngFor="let account of accounts$ | async"
+                        [value]="account.id"
+                    >
+                        {{ account.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="generic-list__categoryFilter">
+                <mat-label>Kategoria</mat-label>
+                <mat-select (selectionChange)="selectCategory($event)">
+                    <mat-option value="">Wszystkie</mat-option>
+                    <mat-option
+                        *ngFor="let cat of categories$ | async"
+                        [value]="cat.id"
+                    >
+                        {{ cat.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <div class="generic-list__table-wrapper">
-        <table mat-table [dataSource]="dataSource" matSort class="generic-list__table mat-elevation-z8">
-            <!-- Position Column -->
+        <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            class="generic-list__table mat-elevation-z8"
+        >
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
                 <td mat-cell *matCellDef="let element">{{ element.id }}</td>
             </ng-container>
             <ng-container matColumnDef="category">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Kategoria</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Kategoria
+                </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="generic-list__icon">
-                        <i class="material-icons" *ngIf="element.category.image" [matTooltip]="element.category.name">
+                        <i
+                            class="material-icons"
+                            *ngIf="element.category.image"
+                            [matTooltip]="element.category.name"
+                        >
                             {{ element.category.image }}
                         </i>
                     </div>
@@ -59,39 +116,44 @@
                     </span>
                 </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="value">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Wartość
+                </th>
                 <td mat-cell *matCellDef="let element">
                     {{ element.value }} {{ element.currency }}
                 </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
                 <td mat-cell *matCellDef="let element">
                     {{ parseDate(element.date) }}
                 </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="account">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Konto</th>
                 <td mat-cell *matCellDef="let element">
                     {{ element.account.name }}
                 </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let element">
                     <div class="generic-list__actions">
-                        <button class="button button--secondary" (click)="delete(element.id)">
+                        <button
+                            class="button button--secondary"
+                            (click)="delete(element.id)"
+                        >
                             Usuń
                         </button>
                     </div>
                 </td>
             </ng-container>
-    
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
