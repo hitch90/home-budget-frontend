@@ -9,7 +9,9 @@ import {
 // @ts-ignore
 import ApexCharts from 'apexcharts';
 import dayjs = require('dayjs');
-import { forkJoin } from 'rxjs';
+import {forkJoin, Observable, Subscription} from 'rxjs';
+import {ExpenseService} from '../../services/expense.service';
+import {IncomeService} from '../../services/income.service';
 
 @Component({
     selector: 'app-charts',
@@ -18,8 +20,8 @@ import { forkJoin } from 'rxjs';
 })
 export class ChartsComponent implements OnInit, AfterViewInit {
     @ViewChild('chart', { static: true }) chartDiv: ElementRef;
-    @Input() data;
     @Input() title = '';
+    data: Observable<any>[] = [];
     currentYear = dayjs(new Date()).format('YYYY');
     dataByMonths: any[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     options = {
@@ -80,38 +82,48 @@ export class ChartsComponent implements OnInit, AfterViewInit {
         }
     };
 
-    constructor() {}
+    constructor(
+        private expenseService: ExpenseService,
+        private incomeService: IncomeService
+    ) {}
 
     ngAfterViewInit() {
         forkJoin(this.data).subscribe((res) => {
             const expenses: any = res[0];
             const incomes: any = res[1];
-            const valuesArr = this.dataByMonths;
-            for (const item of expenses) {
-                const itemMonth = dayjs(item.date).format('MM');
-                const itemYear = dayjs(item.date).format('YYYY');
-                if (itemYear === this.currentYear) {
-                    valuesArr[parseInt(itemMonth, 10) - 1] -= item.value;
-                }
+            if (expenses) {
+                this.calc(expenses, 'expense');
             }
-
-            for (const item of incomes) {
-                const itemMonth = dayjs(item.date).format('MM');
-                const itemYear = dayjs(item.date).format('YYYY');
-                if (itemYear === this.currentYear) {
-                    valuesArr[parseInt(itemMonth, 10) - 1] += item.value;
-                }
+            if (incomes) {
+                this.calc(incomes);
             }
-            this.dataByMonths = valuesArr.map(item => item.toFixed(2));;
             this.options.series[0].data = this.dataByMonths;
             const chart = new ApexCharts(
                 this.chartDiv.nativeElement,
                 this.options
             );
             chart.render();
-            
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.data.push(this.expenseService.findByMonth(new Date().getMonth() + 1));
+        this.data.push(this.incomeService.findByMonth(new Date().getMonth()));
+    }
+    
+    calc(arr, type = 'income') {
+        const valuesArr = this.dataByMonths;
+        for (const item of arr) {
+            const itemMonth = dayjs(item.date).format('MM');
+            const itemYear = dayjs(item.date).format('YYYY');
+            if (itemYear === this.currentYear) {
+                if (type === 'income') {
+                    valuesArr[parseInt(itemMonth, 10) - 1] += item.value;
+                } else if (type === 'expense') {
+                    valuesArr[parseInt(itemMonth, 10) - 1] -= item.value;
+                }
+            }
+        }
+        this.dataByMonths = valuesArr;
+    }
 }

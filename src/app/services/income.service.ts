@@ -20,6 +20,10 @@ export class IncomeService {
         return this.httpClient.get(this.incomesRoute + `?date_start=${from}&date_end=${to}`);
     }
 
+    findByMonth(month) {
+        return this.httpClient.get(this.incomesRoute + `?month=${month}`);
+    }
+
     findOne(id: number) {
         return this.httpClient.get(this.incomeRoute + '/' + id);
     }
