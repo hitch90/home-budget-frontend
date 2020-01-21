@@ -52,7 +52,16 @@ export class IncomeFormComponent implements OnInit {
             .subscribe(
                 () => {
                     this.status = 'ok';
-                    this.incomeForm.reset();
+                    this.incomeForm.patchValue({
+                        name: '',
+                        description: '',
+                        category: '',
+                        image: '',
+                        value: 0,
+                        currency: 'pln',
+                        account: '',
+                        date: ''
+                    });
                 },
                 () => (this.status = 'not-ok')
             );

@@ -1,5 +1,8 @@
 <div class="dashboard__widget">
     <h2 class="dashboard__widget-title">
+        <i class="material-icons {{ icon }}" *ngIf="icon">
+            {{ icon }}
+        </i>
         {{ title }}
     </h2>
     <div class="dashboard__widget-loader" *ngIf="!list">
@@ -18,7 +21,7 @@
                     {{ item.category.name }}
                 </h3>
                 <div class="dashboard__widget-list-item-value">
-                    {{ item.value }} 
+                    {{ formatVal(item.value) }} 
                     <span>{{ item.currency }}</span>
                 </div>
             </div>

@@ -52,7 +52,16 @@ export class ExpenseFormComponent implements OnInit {
             .subscribe(
                 () => {
                     this.status = 'ok';
-                    this.expenseForm.reset();
+                    this.expenseForm.patchValue({
+                        name: '',
+                        description: '',
+                        category: '',
+                        image: '',
+                        value: 0,
+                        currency: 'pln',
+                        account: '',
+                        date: ''
+                    });
                 },
                 () => (this.status = 'not-ok')
             );

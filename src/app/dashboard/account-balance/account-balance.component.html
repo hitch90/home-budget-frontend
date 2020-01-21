@@ -1,0 +1,23 @@
+<div class="balance-widget">
+    <img src="../../../assets/wallet.svg" alt="wallet" class="balance-widget__image" />
+    <div class="balance-widget__current">
+         <span class="balance-widget__label">
+        Stan konta
+        </span>
+        <span class="balance-widget__value">
+            {{ formatVal(balance) }} <small>PLN</small>
+        </span>
+    </div>
+    <div class="balance-widget__income">
+        <i class="material-icons">
+            arrow_upward
+        </i>
+        {{ formatVal(this.income) }} <small>PLN</small>
+    </div>
+    <div class="balance-widget__expense">
+        <i class="material-icons">
+            arrow_downward
+        </i>
+        {{ formatVal(this.expense) }} <small>PLN</small>
+    </div>
+</div>

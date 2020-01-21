@@ -37,7 +37,11 @@ export class CategoryFormComponent implements OnInit {
             .subscribe(
                 () => {
                     this.status = 'ok';
-                    this.categoryForm.reset();
+                    this.categoryForm.patchValue({
+                        name: '',
+                        description: '',
+                        image: '',
+                    });
                 },
                 () => (this.status = 'not-ok')
             );

@@ -23,7 +23,11 @@ export class IncomeService {
     findByMonth(month) {
         return this.httpClient.get(this.incomesRoute + `?month=${month}`);
     }
-
+    
+    findByCategory(id) {
+        return this.httpClient.get(this.incomesRoute + `?category=${id}`);
+    }
+    
     findOne(id: number) {
         return this.httpClient.get(this.incomeRoute + '/' + id);
     }

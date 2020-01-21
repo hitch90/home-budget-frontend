@@ -2,14 +2,14 @@
     <span class="account-widget__delete" *ngIf="account.id !== 1" (click)="deleteEv()">
         <i class="material-icons">close</i>
     </span>
-    <h2 class="account-widget__name">
-        {{ account.name }}
-    </h2>
-    <h3 class="account-widget__value">
-        {{ account.currentValue.toFixed(2) }}
-        <span>{{ account.currency }}</span>
-    </h3>
-    <span class="account-widget__type">
-        {{ account.type }}
-    </span>
+    <div class="account-widget__icon"></div>
+    <div class="account-widget__content">
+        <h2 class="account-widget__name">
+            {{ account.name }}
+        </h2>
+        <h3 class="account-widget__value">
+            {{ account.currentValue.toFixed(2) }}
+            <span>{{ account.currency }}</span>
+        </h3>
+    </div>
 </div>

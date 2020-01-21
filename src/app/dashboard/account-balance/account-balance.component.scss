@@ -1,0 +1,66 @@
+.balance-widget {
+    color: #212747;
+    background: #f8faff;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    margin: 20px;
+    @media (min-width: 1000px) {
+        display: flex;
+        align-items: center;
+        margin: 40px;
+        padding: 15px 15px 15px 220px;
+    }
+    &__label {
+        font: bold 14px/20px 'Nunito', sans-serif;
+        display: block;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+    &__value {
+        display: block;
+        font: 800 30px/30px 'Nunito', sans-serif;
+        small {
+            font-size: 50%;
+            font-weight: 600;
+        }
+    }
+    &__image {
+        height: 80px;
+        display: block;
+        margin: -20px auto 15px;
+        @media (min-width: 1000px) {
+            margin: 0;
+            position: absolute;
+            left: 20px;
+            bottom: 0;
+            height: 120px;
+        }
+    }
+    &__income,
+    &__expense {
+        padding: 10px 0;
+        font: bold 14px/18px 'Nunito';
+        @media (min-width: 1000px) {
+            padding: 30px 0;
+        }
+        i {
+            font-size: 22px;
+            line-height: 18px;
+            color: #fb5870;
+            vertical-align: top;
+        }
+        small {
+            font-weight: 400;
+            font-size: 80%;
+        }
+    }
+    &__income {
+        @media (min-width: 1000px) {
+            padding: 30px 60px;
+        }
+        i {
+            color: #62a78e;
+        }
+    }
+}

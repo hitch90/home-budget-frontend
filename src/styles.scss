@@ -24,14 +24,16 @@
     --danger: #dc3545;
     --light: #f8f9fa;
     --dark: #343a40;
-    --nav-bg: #2b303b;
-    --nav-color: #788296;
+    --nav-bg: rgb(243,245,249);
+    --nav-color: #B9BCC5;
+    --nav-color-hover: rgb(0,0,0);
     --nav-icon-bg: #21252d;
-    --nav-icon-color: #788296;
+    --nav-icon-color: #B9BCC5;
+    --nav-icon-color-hover: rgb(0,0,0);;
     --header-border-color: #e6e6e6;
     --header-label-bg: #48b0f7;
     --btn-primary: #6d5cae;
-    --dashboard-widget-title-color: #333;
+    --dashboard-widget-title-color: #9CA0AB;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -40,10 +42,12 @@
 }
 body {
     font-family: "Segoe UI",Arial,sans-serif;
-    background-color: #fafafa;
 }
 .page-container {
     padding: 0 0 0 60px;
+    @media (min-width: 1000px) {
+        padding: 0 0 0 280px;
+    }
 }
 @import "app/shared/styles/button";
 

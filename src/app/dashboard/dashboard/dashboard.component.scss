@@ -1,24 +1,52 @@
 .dashboard {
     &__container {
-        padding: 20px;
         @media (min-width: 1000px) {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: calc(100% - 360px) 360px;
             display: grid;
+        }
+    }
+    
+    &__lists {
+        @media (min-width: 1000px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 40px;
+            padding: 0 40px;
+        }
+    }
+
+    &__accounts {
+        padding: 20px;    
+        background: #F8FAFF;
+    }
+    
+    &__categories {
+        @media (min-width: 1000px) {
+            display: grid;
+            padding: 50px 40px;
+            grid-template-columns: repeat(8, 1fr);
             grid-gap: 20px;
         }
-    }
-    &__accounts {
-        margin-bottom: 20px;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 20px;
-        @media (min-width: 1000px) {
-            margin-bottom: 0;
-            align-self: flex-start;
-            grid-row: span 2;
-            grid-template-columns: 1fr 1fr;
+        .dashboard__title {
+            grid-column: span 8;
         }
     }
+
+    &__title {
+        font: bold 16px/30px 'Nunito', sans-serif;
+        color: #404255;
+        display: flex;
+        a {
+            margin: 0 0 0 auto;
+            color: #404255;
+
+            i {
+                font-size: 16px;
+                line-height: 30px;
+            }
+        }
+    }
+
     &__charts {
         margin-bottom: 20px;
         @media (min-width: 1000px) {
@@ -26,34 +54,59 @@
             grid-column: span 2;
         }
     }
-    &__account {
-        background: var(--dark);
-        &:nth-child(1) {
-            background: var(--primary);
-        }
-        &:nth-child(2) {
-            background: var(--teal);
-        }
-        &:nth-child(3) {
-            background: var(--cyan);
-        }
-        &:nth-child(4) {
-            background: var(--cyan);
-        }
-        &.ing {
-            background: #ff6200 url('../../../assets/ing.png') no-repeat 80% bottom;
-        }
-        &.pekao {
-            background: #D71921 url('../../../assets/pekao.png') no-repeat 80% bottom;
-        }
-        &.pko {
-            background: #004C9A url('../../../assets/pko.png') no-repeat 70% bottom;
-        }
-        &.revolut {
-            background: #0DB1E6 url('../../../assets/revolut.png') no-repeat 70% bottom;
-            background-size: 40%;
-            &.business {
-                background: var(--dark);
+}
+::ng-deep {
+    .dashboard {
+        &__account {
+            background: var(--dark);
+
+            &:nth-child(1) {
+                background: var(--primary);
+            }
+
+            &:nth-child(2) {
+                background: var(--teal);
+            }
+
+            &:nth-child(3) {
+                background: var(--cyan);
+            }
+
+            &:nth-child(4) {
+                background: var(--cyan);
+            }
+
+            &.ing .account-widget__icon {
+                background: #ff6200 url('../../../assets/ing.png') no-repeat;
+            }
+
+            &.pekao .account-widget__icon {
+                background: #D71921 url('../../../assets/pekao.png') no-repeat;
+            }
+
+            &.pko .account-widget__icon {
+                background: #004C9A url('../../../assets/pko.png') no-repeat;
+            }
+
+            &.revolut {
+                .account-widget__icon {
+                    background: #0DB1E6 url('../../../assets/revolut.png') no-repeat;
+                }
+
+                &.business {
+                    .account-widget__icon {
+                        background: var(--dark);
+                    }
+                }
+            }
+            .account-widget__icon {
+                width: 50px;
+                height: 50px;
+                background: rgba(0, 0, 0, 0.2);
+                background-size: 40px !important;
+                background-position: center !important;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             }
         }
     }

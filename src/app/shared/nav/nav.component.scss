@@ -7,9 +7,19 @@
     transition: left 0.3s;
     background: var(--nav-bg);
     z-index: 99;
-    &:hover {
+    font-family: 'Nunito', sans-serif;
+    @media (min-width: 1000px) {
+        left: 0;
+    }
+    &__logo {
+        display: none;
         @media (min-width: 1000px) {
-            left: 0;
+            display: block;
+            margin: 30px auto;
+            img {
+                display: block;
+                margin: 0 auto;
+            }
         }
     }
     &__list {
@@ -26,10 +36,19 @@
         text-decoration: none;
         color: var(--nav-color);
         font-size: 13px;
+        font-weight: bold;
+        @media (min-width: 1000px) {
+            padding: 0 0 0 30px;
+        }
         &:hover {
-            color: var(--white);
+            color: var(--nav-color-hover);
             i {
-                color: var(--white);
+                color: var(--nav-icon-color-hover);
+            } 
+        }
+        span:not(.nav__icon) {
+            @media (min-width: 1000px) {
+                order: 1;
             }
         }
     }
@@ -37,8 +56,11 @@
         width: 40px;
         text-align: center;
         margin: 10px 10px 10px auto;
-        background: var(--nav-icon-bg);
         color: var(--nav-icon-color);
+        @media (min-width: 1000px) {
+            margin: 10px 10px 10px 0;
+            order: 0;
+        }
         i {
             display: block;
             line-height: 40px;

@@ -108,7 +108,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.data.push(this.expenseService.findByMonth(new Date().getMonth() + 1));
-        this.data.push(this.incomeService.findByMonth(new Date().getMonth()));
+        this.data.push(this.incomeService.findByMonth(new Date().getMonth() + 1));
     }
     
     calc(arr, type = 'income') {
@@ -124,6 +124,6 @@ export class ChartsComponent implements OnInit, AfterViewInit {
                 }
             }
         }
-        this.dataByMonths = valuesArr;
+        this.dataByMonths = valuesArr.map(item => parseInt(item, 10));
     }
 }

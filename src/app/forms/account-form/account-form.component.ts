@@ -23,7 +23,6 @@ export class AccountFormComponent implements OnInit {
         return this.formBuilder.group({
             name: ['', Validators.required],
             description: [''],
-            category: ['', Validators.required],
             image: [''],
             startValue: [0, Validators.required],
             currency: ['pln', Validators.required],
@@ -36,7 +35,13 @@ export class AccountFormComponent implements OnInit {
         this.accountService.create({ ...values, currentValue: values.startValue}).subscribe(
             () => {
                 this.status = 'ok';
-                this.accountForm.reset();
+                this.accountForm.patchValue({
+                    name: '',
+                    description: '',
+                    startValue: 0,
+                    currency: 'pln',
+                    type: ''
+                });
             },
             () => (this.status = 'not-ok')
         );

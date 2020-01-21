@@ -1,0 +1,73 @@
+<div class="add-button">
+    <button class="add-button__btn" (click)="toggleAddNav()">
+        <i class="material-icons">
+            add
+        </i>
+        <span>
+            Dodaj
+        </span>
+    </button>
+    <ul class="add-button__list" *ngIf="addNav" [@inOutAnimation] (click)="addNav = false">
+        <li class="add-button__list-item">
+            <a [routerLink]="['add', 'expense']" class="add-button__list-link">
+                    <span class="add-button__list-icon">
+                        <i class="material-icons">
+                            trending_down
+                        </i>
+                    </span>
+                <span class="add-button__list-text">
+                        Koszt
+                    </span>
+            </a>
+        </li>
+        <li class="add-button__list-item">
+            <a [routerLink]="['add', 'income']" class="add-button__list-link">
+                    <span class="add-button__list-icon">
+                        <i class="material-icons">
+                            trending_up
+                        </i>
+                    </span>
+                <span class="add-button__list-text">
+                        Dochód
+                    </span>
+            </a>
+        </li>
+        <li class="add-button__list-item">
+            <a [routerLink]="['add', 'account']" class="add-button__list-link">
+                    <span class="add-button__list-icon">
+                       <i class="material-icons">
+                           attach_money
+                       </i>
+                    </span>
+                <span class="add-button__list-text">
+                        Konto
+                    </span>
+            </a>
+        </li>
+        <li class="add-button__list-item">
+            <a [routerLink]="['add', 'category']" class="add-button__list-link">
+                    <span class="add-button__list-icon">
+                       <i class="material-icons">
+                           category
+                       </i>
+                    </span>
+                <span class="add-button__list-text">
+                        Kategorie
+                    </span>
+            </a>
+        </li>
+
+        <li class="add-button__list-item">
+            <a [routerLink]="['add', 'transfer']" class="add-button__list-link">
+                    <span class="add-button__list-icon">
+                       <i class="material-icons">
+                           transform
+                       </i>
+                    </span>
+                <span class="add-button__list-text">
+                        Transfer
+                    </span>
+            </a>
+        </li>
+    </ul>
+</div>
