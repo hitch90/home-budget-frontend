@@ -5,7 +5,7 @@
             display: grid;
         }
     }
-    
+
     &__lists {
         @media (min-width: 1000px) {
             display: grid;
@@ -16,19 +16,25 @@
     }
 
     &__accounts {
-        padding: 20px;    
-        background: #F8FAFF;
+        padding: 20px;
+        background: #f8faff;
     }
-    
+
     &__categories {
+        display: grid;
+        padding: 30px 10px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
         @media (min-width: 1000px) {
-            display: grid;
             padding: 50px 40px;
             grid-template-columns: repeat(8, 1fr);
             grid-gap: 20px;
         }
         .dashboard__title {
-            grid-column: span 8;
+            grid-column: span 2;
+            @media (min-width: 1000px) {
+                grid-column: span 8;
+            }
         }
     }
 
@@ -81,16 +87,17 @@
             }
 
             &.pekao .account-widget__icon {
-                background: #D71921 url('../../../assets/pekao.png') no-repeat;
+                background: #d71921 url('../../../assets/pekao.png') no-repeat;
             }
 
             &.pko .account-widget__icon {
-                background: #004C9A url('../../../assets/pko.png') no-repeat;
+                background: #004c9a url('../../../assets/pko.png') no-repeat;
             }
 
             &.revolut {
                 .account-widget__icon {
-                    background: #0DB1E6 url('../../../assets/revolut.png') no-repeat;
+                    background: #0db1e6 url('../../../assets/revolut.png')
+                        no-repeat;
                 }
 
                 &.business {
