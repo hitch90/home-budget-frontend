@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
     
     deleteAccount(id) {
         this.accountService.delete(id).subscribe(() => {
-            console.log('OK');
             this.accounts$ = this.accountService.findAll();
         });
     }

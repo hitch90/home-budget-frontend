@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import {
     MatDatepickerModule,
-    MatFormFieldModule,
+    MatFormFieldModule, MatInputModule,
     MatNativeDateModule, MatSelectModule, MatSortModule, MatTableModule, MatTooltipModule
 } from '@angular/material';
 import { AccountListComponent } from './account-list/account-list.component';
@@ -15,6 +15,8 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { IncomeListComponent } from './income-list/income-list.component';
 import { ExpenseListComponent } from './expense-list/expense-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
+import { TableListComponent } from './table-list/table-list.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
     imports: [
@@ -30,14 +32,17 @@ import { ListPageComponent } from './list-page/list-page.component';
         MatTableModule,
         MatSortModule,
         MatTooltipModule,
-        MatSelectModule
+        MatSelectModule,
+        MatInputModule
     ],
     declarations: [
         AccountListComponent,
         CategoryListComponent,
         IncomeListComponent,
         ExpenseListComponent,
-        ListPageComponent
+        ListPageComponent,
+        TableListComponent,
+        FiltersComponent
     ],
     exports: []
 })

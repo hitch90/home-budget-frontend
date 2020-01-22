@@ -1,0 +1,78 @@
+<table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="date"
+    matSortDirection="desc"
+    class="generic-list__table"
+>
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Kategoria
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="generic-list__icon">
+                <i
+                    class="material-icons"
+                    *ngIf="element.category.image"
+                    [matTooltip]="element.category.name"
+                >
+                    {{ element.category.image }}
+                </i>
+            </div>
+            <span *ngIf="!element.category.image">
+                {{ element.category.name }}
+            </span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.name }}
+            <span class="generic-list__description">
+                {{ element.description }}
+            </span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Wartość
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.value }} {{ element.currency }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element">
+            {{ parseDate(element.date) }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="account">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Konto</th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.account.name }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element">
+            <div class="generic-list__actions">
+                <i class="material-icons" (click)="delete(element.id)">
+                    close
+                </i>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

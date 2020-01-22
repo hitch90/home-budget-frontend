@@ -18,10 +18,12 @@
                 <h2 class="dashboard__title">
                     Wydatki według kategorii
                 </h2>
-                <app-category-balance
-                    [category]="category"
-                    *ngFor="let category of category$ | async"
-                ></app-category-balance>
+                <ng-container *ngFor="let category of category$ | async">
+                    <app-category-balance
+                        [category]="category"
+                        *ngIf="category.id !== 6"
+                    ></app-category-balance>
+                </ng-container>
             </div>
             <app-charts
                 title="Bilans miesięczny (rok)"

@@ -1,0 +1,62 @@
+<div class="filters" [formGroup]="filterForm">
+    <div class="filters__field">
+        <mat-form-field appearance="outline">
+            <mat-label>Data od</mat-label>
+            <input matInput formControlName="from" [matDatepicker]="from">
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="from"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #from></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="filters__field">
+        <mat-form-field appearance="outline">
+            <mat-label>Data do</mat-label>
+            <input matInput formControlName="to" [matDatepicker]="to">
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="to"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #to></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="filters__field">
+        <mat-form-field appearance="outline">
+            <mat-label>Konto</mat-label>
+            <mat-select formControlName="account">
+                <mat-option value="">Wszystkie</mat-option>
+                <mat-option
+                    *ngFor="let account of accounts$ | async"
+                    [value]="account.id"
+                >
+                    {{ account.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="filters__field">
+        <mat-form-field appearance="outline">
+            <mat-label>Kategoria</mat-label>
+            <mat-select formControlName="category">
+                <mat-option value="">Wszystkie</mat-option>
+                <mat-option
+                    *ngFor="let cat of categories$ | async"
+                    [value]="cat.id"
+                >
+                    {{ cat.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    
+    <div class="filters__field">
+        <button
+            type="submit"
+            (click)="submit()"
+            class="button button--primary"
+        >
+            Filtruj
+        </button>
+    </div>
+</div>

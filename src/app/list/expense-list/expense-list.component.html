@@ -1,161 +1,31 @@
-<div class="generic-list">
-    <h2 class="generic-list__title">
-        Lista wydatków
-        <a [routerLink]="['/add', 'expense']" class="button button--primary">
-            Dodaj
-        </a>
-    </h2>
-    <div class="generic-list__filters">
-        <div class="generic-list__dateFilter" [formGroup]="dateForm">
-            <div class="input">
-                <label>
-                    Data od
-                </label>
-                <div class="input-group">
-                    <input
-                        [matDatepicker]="from"
-                        placeholder="Choose a date"
-                        formControlName="from"
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="from"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #from></mat-datepicker>
-                </div>
+<div class="generic-list-grid">
+    
+    <div class="generic-list-grid__content">
+        <header class="generic-list-grid__header">
+            <img src="../../../assets/expenses.svg" alt="Wydatki" class="generic-list-grid__header-icon" />
+            <h2 class="generic-list-grid__title">
+                Wydatki w tym miesiącu
+                <span class="generic-list-grid__subtitle">
+                    Suma: {{ formatVal(expensesSum) }} PLN
+                </span>
+            </h2>
+            <div class="generic-list-grid__add-btn">
+                <a [routerLink]="['/add', 'expense']" class="button button--primary">
+                    Dodaj
+                </a>
             </div>
-            <div class="input">
-                <label>
-                    Data do
-                </label>
-                <div class="input-group">
-                    <input
-                        [matDatepicker]="to"
-                        placeholder="Choose a date"
-                        formControlName="to"
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="to"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #to></mat-datepicker>
-                </div>
-            </div>
-            <button
-                type="submit"
-                (click)="submit()"
-                class="button button--primary"
-            >
-                Filtruj
-            </button>
-        </div>
-        <div class="generic-list__selectFilters">
-            <mat-form-field class="generic-list__accountFilter">
-                <mat-label>Konto</mat-label>
-                <mat-select (selectionChange)="selectAccount($event)">
-                    <mat-option value="">Wszystkie</mat-option>
-                    <mat-option
-                        *ngFor="let account of accounts$ | async"
-                        [value]="account.id"
-                    >
-                        {{ account.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="generic-list__categoryFilter">
-                <mat-label>Kategoria</mat-label>
-                <mat-select (selectionChange)="selectCategory($event)">
-                    <mat-option value="">Wszystkie</mat-option>
-                    <mat-option
-                        *ngFor="let cat of categories$ | async"
-                        [value]="cat.id"
-                    >
-                        {{ cat.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+        </header>
+        <div class="generic-list__table-wrapper">
+            <app-table-list [data]="dataTable" (deleteItem)="delete($event)"></app-table-list>
+            <h4 class="generic-list-grid__sum" *ngIf="expensesSumFilter > 0">
+                Razem: {{ formatVal(expensesSumFilter) }} PLN
+            </h4>
         </div>
     </div>
-    <div class="generic-list__table-wrapper">
-        <table
-            mat-table
-            [dataSource]="dataSource"
-            matSort
-            class="generic-list__table mat-elevation-z8"
-        >
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-            </ng-container>
-            <ng-container matColumnDef="category">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Kategoria
-                </th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="generic-list__icon">
-                        <i
-                            class="material-icons"
-                            *ngIf="element.category.image"
-                            [matTooltip]="element.category.name"
-                        >
-                            {{ element.category.image }}
-                        </i>
-                    </div>
-                    <span *ngIf="!element.category.image">
-                        {{ element.category.name }}
-                    </span>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
-                <td mat-cell *matCellDef="let element">
-                    {{ element.name }}
-                    <span class="generic-list__description">
-                        {{ element.description }}
-                    </span>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="value">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Wartość
-                </th>
-                <td mat-cell *matCellDef="let element">
-                    {{ element.value }} {{ element.currency }}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
-                <td mat-cell *matCellDef="let element">
-                    {{ parseDate(element.date) }}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="account">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Konto</th>
-                <td mat-cell *matCellDef="let element">
-                    {{ element.account.name }}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="generic-list__actions">
-                        <button
-                            class="button button--secondary"
-                            (click)="delete(element.id)"
-                        >
-                            Usuń
-                        </button>
-                    </div>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+    <div class="generic-list-grid__filters">
+        <h2 class="generic-list-grid__title">
+            Filtry
+        </h2>
+        <app-filters (submitFilters)="submit($event)"></app-filters>
     </div>
 </div>
