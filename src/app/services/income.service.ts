@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import dayjs = require('dayjs');
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,18 @@ export class IncomeService {
     
     create(income) {
         return this.httpClient.post(this.incomeRoute, income);
+    }
+
+    getByFilters(filters) {
+        const objectArray = Object.entries(filters);
+        let query = '?filters=true';
+        objectArray.forEach(([key, value], index) => {
+            let val: any = value;
+            if (key === 'from' || key === 'to') {
+                val = dayjs(val).format('YYYY-MM-DD');
+            }
+            query = `${query}&${key}=${val}`;
+        });
+        return this.httpClient.get(this.incomesRoute + query);
     }
 }

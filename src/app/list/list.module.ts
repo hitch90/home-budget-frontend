@@ -17,6 +17,8 @@ import { ExpenseListComponent } from './expense-list/expense-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { TableListComponent } from './table-list/table-list.component';
 import { FiltersComponent } from './filters/filters.component';
+import { CategoryTableComponent } from './category-table/category-table.component';
+import { AccountTableComponent } from './account-table/account-table.component';
 
 @NgModule({
     imports: [
@@ -42,7 +44,9 @@ import { FiltersComponent } from './filters/filters.component';
         ExpenseListComponent,
         ListPageComponent,
         TableListComponent,
-        FiltersComponent
+        FiltersComponent,
+        CategoryTableComponent,
+        AccountTableComponent
     ],
     exports: []
 })

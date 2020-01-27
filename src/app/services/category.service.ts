@@ -21,4 +21,8 @@ export class CategoryService {
   create(category) {
       return this.httpClient.post(this.categoryRoute, category);
   }
+  
+  delete(id) {
+      return this.httpClient.delete(this.categoryRoute + `/${id}`);
+  }
 }

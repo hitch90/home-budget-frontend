@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { IncomeService } from '../../services/income.service';
 import dayjs = require('dayjs');
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {formatValue} from '../../helpers/format-value';
+import {IExpanse} from '../../interfaces/expanse';
+import {Observable} from 'rxjs';
+import {AccountService} from '../../services/account.service';
+import {CategoryService} from '../../services/category.service';
 
 @Component({
     selector: 'app-income-list',
@@ -9,43 +14,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./income-list.component.scss']
 })
 export class IncomeListComponent implements OnInit {
-    dateForm: FormGroup;
+    incomesSum = 0;
+    incomesSumFilter = 0;
+    accounts$: Observable<any>;
+    categories$: Observable<any>;
     dataTable: any = [];
+
     constructor(
         private incomeService: IncomeService,
-        private formBuilder: FormBuilder
+        private accountService: AccountService,
+        private categoryService: CategoryService
     ) {}
 
     ngOnInit() {
         this.loadList();
-        this.dateForm = this.formBuild();
-    }
-
-    formBuild() {
-        return this.formBuilder.group({
-            from: ['', Validators.required],
-            to: ['']
-        });
+        this.accounts$ = this.accountService.findAll();
+        this.categories$ = this.categoryService.findAll();
     }
 
     loadList() {
-        this.incomeService.findAll().subscribe((data: any[]) => {
-            this.dataTable = data;
-        });
+        const currentMonth = new Date().getMonth() + 1;
+        this.incomeService
+            .findByMonth(currentMonth)
+            .subscribe((data: IExpanse[]) => {
+                this.dataTable = data;
+                data.map(item => this.incomesSum += item.value);
+            });
     }
 
     delete(id) {
         this.incomeService.delete(id).subscribe(() => this.loadList());
     }
 
-    submit() {
-        const dates = this.dateForm.getRawValue();
-        dates.from = dayjs(dates.from).format('YYYY-MM-DD');
-        dates.to = dayjs(dates.to).format('YYYY-MM-DD');
-        this.incomeService
-            .findByDates(dates.from, dates.to)
-            .subscribe((data: any[]) => {
-                this.dataTable = data;
-            });
+    submit(filters) {
+        this.incomesSumFilter = 0;
+        this.incomeService.getByFilters(filters).subscribe((data: IExpanse[]) => {
+            this.dataTable = data;
+            data.map(item => this.incomesSumFilter += item.value);
+        });
+    }
+    
+    formatVal(val) {
+        return formatValue(val);
     }
 }

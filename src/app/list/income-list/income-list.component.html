@@ -1,37 +1,30 @@
-<div class="generic-list">
-    <h2 class="generic-list__title">
-        Lista wpływów na konta
-        <a [routerLink]="['/add', 'income']" class="button button--primary">
-            Dodaj
-        </a>
-    </h2>
-    
-    <div class="generic-list__filters">
-        <div class="generic-list__dateFilter" [formGroup]="dateForm">
-            <div class="input">
-                <label>
-                    Data od
-                </label>
-                <div class="input-group">
-                    <input [matDatepicker]="from" placeholder="Choose a date" formControlName="from" />
-                    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
-                    <mat-datepicker #from></mat-datepicker>
-                </div>
+<div class="generic-list-grid">
+    <div class="generic-list-grid__content">
+        <header class="generic-list-grid__header">
+            <img src="../../../assets/expenses.svg" alt="Wydatki" class="generic-list-grid__header-icon" />
+            <h2 class="generic-list-grid__title">
+                Przychody w tym miesiącu
+                <span class="generic-list-grid__subtitle">
+                    Suma: {{ formatVal(incomesSum) }} PLN
+                </span>
+            </h2>
+            <div class="generic-list-grid__add-btn">
+                <a [routerLink]="['/add', 'income']" class="button button--primary">
+                    Dodaj
+                </a>
             </div>
-            <div class="input">
-                <label>
-                    Data do
-                </label>
-                <div class="input-group">
-                    <input [matDatepicker]="to" placeholder="Choose a date" formControlName="to" />
-                    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
-                    <mat-datepicker #to></mat-datepicker>
-                </div>
-            </div>
-            <button type="submit" (click)="submit()" class="button button--primary">Filtruj</button>
+        </header>
+        <div class="generic-list__table-wrapper">
+            <app-table-list [data]="dataTable" (deleteItem)="delete($event)"></app-table-list>
+            <h4 class="generic-list-grid__sum" *ngIf="incomesSumFilter > 0">
+                Razem: {{ formatVal(incomesSumFilter) }} PLN
+            </h4>
         </div>
     </div>
-    <div class="generic-list__table-wrapper">
-        <app-table-list [data]="dataTable" (deleteItem)="delete($event)"></app-table-list>
+    <div class="generic-list-grid__filters">
+        <h2 class="generic-list-grid__title">
+            Filtry
+        </h2>
+        <app-filters (submitFilters)="submit($event)"></app-filters>
     </div>
 </div>
