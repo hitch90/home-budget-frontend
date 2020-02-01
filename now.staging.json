@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "Home budget app staging",
+    "build": {
+        "env": {
+            "API_URL": "https://home-budget-app-dev.herokuapp.com",
+            "PASSWORD": "d41d8cd98f00b204e9800998ecf8427e"
+        }
+    }
+}

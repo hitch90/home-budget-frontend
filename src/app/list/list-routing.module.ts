@@ -5,10 +5,12 @@ import { ExpenseListComponent } from './expense-list/expense-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
+import { AuthGuardService } from '../services/auth.service';
 const routes: Routes = [
     {
         path: 'list',
         component: ListPageComponent,
+        canActivate : [AuthGuardService],
         children: [
             {
                 path: 'income',
