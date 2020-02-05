@@ -7,6 +7,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { AuthGuardService } from '../services/auth.service';
+import { RefillFormComponent } from './refill-form/refill-form.component';
 
 const routes: Routes = [
     {
@@ -33,6 +34,10 @@ const routes: Routes = [
             {
                 path: 'transfer',
                 component: TransferFormComponent
+            },
+            {
+                path: 'refill',
+                component: RefillFormComponent
             }
         ]
     }

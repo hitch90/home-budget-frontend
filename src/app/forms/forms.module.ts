@@ -12,6 +12,7 @@ import {SharedModule} from '../shared/shared.module';
 import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
+import { RefillFormComponent } from './refill-form/refill-form.component';
 ;
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
         ExpenseFormComponent,
         AccountFormComponent,
         CategoryFormComponent,
-        TransferFormComponent
+        TransferFormComponent,
+        RefillFormComponent
     ],
     exports: []
 })

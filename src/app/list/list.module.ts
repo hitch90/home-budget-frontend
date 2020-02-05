@@ -19,6 +19,7 @@ import { TableListComponent } from './table-list/table-list.component';
 import { FiltersComponent } from './filters/filters.component';
 import { CategoryTableComponent } from './category-table/category-table.component';
 import { AccountTableComponent } from './account-table/account-table.component';
+import { RefillListComponent } from './refill-list/refill-list.component';
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import { AccountTableComponent } from './account-table/account-table.component';
         TableListComponent,
         FiltersComponent,
         CategoryTableComponent,
-        AccountTableComponent
+        AccountTableComponent,
+        RefillListComponent
     ],
     exports: []
 })

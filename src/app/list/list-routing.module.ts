@@ -6,6 +6,8 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { AuthGuardService } from '../services/auth.service';
+import { RefillListComponent } from './refill-list/refill-list.component';
+
 const routes: Routes = [
     {
         path: 'list',
@@ -27,6 +29,10 @@ const routes: Routes = [
             {
                 path: 'category',
                 component: CategoryListComponent
+            },
+            {
+                path: 'refill',
+                component: RefillListComponent
             }
         ]
     }

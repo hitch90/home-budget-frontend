@@ -1,0 +1,24 @@
+<div class="generic-list-grid">
+    <div class="generic-list-grid__content">
+        <header class="generic-list-grid__header">
+            <img src="../../../assets/refill.svg" alt="Wydatki" class="generic-list-grid__header-icon" />
+            <h2 class="generic-list-grid__title">
+                Tankowania
+                <span class="generic-list-grid__subtitle">
+                    Spalanie od początku: {{ consumption$ | async }}
+                </span>
+            </h2>
+            <div class="generic-list-grid__add-btn">
+                <a [routerLink]="['/add', 'refill']" class="button button--primary">
+                    Dodaj
+                </a>
+            </div>
+        </header>
+    </div>
+    <div class="generic-list-grid__filters">
+        <h2 class="generic-list-grid__title">
+            Filtry
+        </h2>
+        <app-filters (submitFilters)="submit($event)"></app-filters>
+    </div>
+</div>
