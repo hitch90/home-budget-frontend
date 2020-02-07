@@ -10,8 +10,7 @@ import { IRefill } from '../interfaces/refill';
     providedIn: 'root'
 })
 export class RefillService {
-    private refillRoute =
-        environment.api_url + '/' + environment.routes.fuel;
+    private refillRoute = environment.api_url + '/' + environment.routes.fuel;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -20,7 +19,15 @@ export class RefillService {
     }
 
     consumption(since?: any): Observable<any> {
-        return this.httpClient.get(this.refillRoute + `/consumption${since ? '?since=' + since : ''}`);
+        return this.httpClient.get(
+            this.refillRoute + `/consumption${since ? '?since=' + since : ''}`
+        );
+    }
+
+    consumptionByMonth(month) {
+        return this.httpClient.get(
+            this.refillRoute + `/consumption?month=${month}`
+        );
     }
 
     findOne(id: number): Observable<any> {
@@ -46,5 +53,12 @@ export class RefillService {
             query = `${query}&${key}=${val}`;
         });
         return this.httpClient.get(this.refillRoute + query);
+    }
+
+    fuelPrice() {
+        return this.httpClient.get(
+            'https://www.globalpetrolprices.com/api_gpp.php?cnt=PL&ind=gp&prd=latest&uid=1638&uidc=6df3421a821772519b2d1f9abb223199',
+            { responseType: 'text' }
+        );
     }
 }

@@ -20,6 +20,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { CategoryTableComponent } from './category-table/category-table.component';
 import { AccountTableComponent } from './account-table/account-table.component';
 import { RefillListComponent } from './refill-list/refill-list.component';
+import { RefillChartComponent } from './refill-chart/refill-chart.component';
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import { RefillListComponent } from './refill-list/refill-list.component';
         FiltersComponent,
         CategoryTableComponent,
         AccountTableComponent,
-        RefillListComponent
+        RefillListComponent,
+        RefillChartComponent
     ],
     exports: []
 })

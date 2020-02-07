@@ -1,19 +1,70 @@
 <div class="generic-list-grid">
     <div class="generic-list-grid__content">
         <header class="generic-list-grid__header">
-            <img src="../../../assets/refill.svg" alt="Wydatki" class="generic-list-grid__header-icon" />
+            <img
+                src="../../../assets/refill.svg"
+                alt="Wydatki"
+                class="generic-list-grid__header-icon"
+            />
             <h2 class="generic-list-grid__title">
                 Tankowania
-                <span class="generic-list-grid__subtitle">
-                    Spalanie od początku: {{ consumption$ | async }}
-                </span>
             </h2>
             <div class="generic-list-grid__add-btn">
-                <a [routerLink]="['/add', 'refill']" class="button button--primary">
+                <a
+                    [routerLink]="['/add', 'refill']"
+                    class="button button--primary"
+                >
                     Dodaj
                 </a>
             </div>
         </header>
+        <div class="generic-list__table-wrapper">
+            <div class="generic-list__widgets">
+                <div class="generic-list__widget span-3">
+                    <app-refill-chart></app-refill-chart>
+                </div>
+                <div class="generic-list__widget grid-2">
+                    <div class="refill-list__consumption">
+                       Ostatnie takowanie
+                        <span>
+                            <i class="material-icons">
+                                local_gas_station
+                            </i>
+                            {{ consumptionLast$ | async }}
+                        </span>
+                    </div>
+                    <div class="refill-list__consumption">
+                        Od początku
+                        <span>
+                            <i class="material-icons">
+                                local_gas_station
+                            </i>
+                            {{ consumption$ | async }}
+                        </span>
+                    </div>
+                    <div class="refill-list__consumption">
+                        Koszt przejechania 100 km
+                        <span>
+                            <i class="material-icons">
+                                attach_money
+                            </i>{{ calcRoutePrice(consumption$ | async) }}
+                        </span>
+                    </div>
+                    <div class="refill-list__consumption">
+                        Całkowity koszt paliwa
+                        <span>
+                            <i class="material-icons">
+                                attach_money
+                            </i>{{ formatVal(totalCost) }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <app-table-list
+                [data]="dataTable"
+                (deleteItem)="delete($event)"
+            ></app-table-list>
+        </div>
     </div>
     <div class="generic-list-grid__filters">
         <h2 class="generic-list-grid__title">
