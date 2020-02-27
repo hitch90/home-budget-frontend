@@ -5,14 +5,14 @@ import { ExpenseListComponent } from './expense-list/expense-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
-import { AuthGuardService } from '../services/auth.service';
 import { RefillListComponent } from './refill-list/refill-list.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
     {
         path: 'list',
         component: ListPageComponent,
-        canActivate : [AuthGuardService],
+        canActivate : [AuthGuard],
         children: [
             {
                 path: 'income',

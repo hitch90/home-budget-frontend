@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import md5 = require('../services/md5.js');
 import { Router } from '@angular/router';
+import {AuthenticationService} from '../services/authentication.service';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
     authForm: FormGroup;
-  constructor(
-      private formBuilder: FormBuilder,
-      private router: Router
-  ) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private authService: AuthenticationService
+    ) { }
 
-  ngOnInit() {
-      this.authForm = this.formBuild();
-  }
-  
-  formBuild() {
-      return this.formBuilder.group({
-          password: ['', Validators.required]
-      });
-  }
+    ngOnInit() {
+        this.authForm = this.formBuild();
+    }
 
-  saveAuth() {
-      localStorage.setItem('status', 'true');
-      localStorage.setItem('password', md5(this.authForm.getRawValue().password));
-      this.router.navigate(['/']);
-  }
+    formBuild() {
+        return this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+    }
+
+    saveAuth() {
+        const loginData = this.authForm.getRawValue();
+        this.authService.login(loginData).subscribe(data => {
+            this.router.navigate(['/']);
+        });
+    }
 }

@@ -2,9 +2,36 @@
     <h2 class="login__title">
         Wpisz hasło, aby uzyskać dostęp
     </h2>
-    <div class="input">
-        <label for="password">Hasło</label>
-        <input type="password" id="password" name="trezy-pw" autocomplete="new-password" /> 
+    <div class="forms" [formGroup]="authForm">
+        <div class="forms__container">
+            <h2 class="forms__title">
+                Zaloguj się aby uzyskać dostęp
+            </h2>
+            <mat-form-field class="input">
+                <mat-label>Użytkownik</mat-label>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    formControlName="username"
+                    matInput
+                />
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Hasło</mat-label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    autocomplete="new-password"
+                    formControlName="password"
+                    matInput
+                />
+            </mat-form-field>
+            <button class="button button--primary button--block" (click)="saveAuth()">
+                Zaloguj się
+            </button>
+        </div>
     </div>
-    <button class="button button--primary" (click)="saveAuth()">Zaloguj się</button>
+
 </div>

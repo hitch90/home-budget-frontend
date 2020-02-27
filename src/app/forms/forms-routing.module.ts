@@ -6,14 +6,14 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
-import { AuthGuardService } from '../services/auth.service';
 import { RefillFormComponent } from './refill-form/refill-form.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
     {
         path: 'add',
         component: FormsComponent,
-        canActivate : [AuthGuardService],
+        canActivate : [AuthGuard],
         children: [
             {
                 path: 'income',

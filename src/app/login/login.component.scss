@@ -57,3 +57,23 @@
         }
     }
 }
+.forms {
+    padding: 20px;
+    &-title {
+        display: block;
+        font: 800 36px/1.4 'Roboto Condensed', sans-serif;
+        margin: 10px 0 20px;
+    }
+}
+.input {
+    width: 100%;
+}
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    .input {
+        width: auto;
+    }
+}
