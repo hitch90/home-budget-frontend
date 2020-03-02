@@ -5,4 +5,5 @@ export interface IExpanse {
     value: number;
     category: number;
     image?: string;
+    color?: string;
 }
