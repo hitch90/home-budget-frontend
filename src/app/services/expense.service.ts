@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IExpanse } from '../interfaces/expanse';
-import dayjs = require('dayjs');
+import * as dayjs from 'dayjs';
 
 @Injectable({
     providedIn: 'root'
@@ -49,7 +49,7 @@ export class ExpenseService {
         return this.httpClient.delete(this.expenseRoute + `/${id}`);
     }
 
-    getByFilters(filters) {
+    getExpenses(filters) {
         const objectArray = Object.entries(filters);
         let query = '?filters=true';
         objectArray.forEach(([key, value], index) => {

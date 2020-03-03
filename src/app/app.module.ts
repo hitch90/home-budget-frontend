@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { ErrorInterceptor } from './services/interceptor';
 import { JwtInterceptor } from './services/jwt-interceptor';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {DashboardModule} from './dashboard/dashboard.module';
+import {DashboardRoutingModule} from './dashboard/dashboard-routing.module';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent],
@@ -25,7 +27,10 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        /* app modules */
+        DashboardModule,
+        DashboardRoutingModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

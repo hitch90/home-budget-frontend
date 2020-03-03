@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertComponent } from './alert/alert.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, BrowserAnimationsModule],
-    declarations: [HeaderComponent, FooterComponent, AlertComponent],
-    exports: [HeaderComponent, FooterComponent, AlertComponent]
+    imports: [
+        CommonModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        FontAwesomeModule
+    ],
+    declarations: [AlertComponent, SidebarComponent, LoaderComponent],
+    exports: [SidebarComponent, AlertComponent, LoaderComponent]
 })
 export class SharedModule {}

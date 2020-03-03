@@ -9,8 +9,6 @@ import {Observable, Subscription} from 'rxjs';
 export class AccountService {
     private accountsRoute =
         environment.api_url + '/' + environment.routes.accounts;
-    private accountRoute =
-        environment.api_url + '/' + environment.routes.account;
     constructor(private httpClient: HttpClient) {}
 
     findAll(): Observable<any> {
@@ -18,15 +16,15 @@ export class AccountService {
     }
 
     findOne(id: number): Observable<any> {
-        return this.httpClient.get(this.accountRoute + '/' + id);
+        return this.httpClient.get(this.accountsRoute + '/' + id);
     }
 
     create(account): Observable<any> {
-        return this.httpClient.post(this.accountRoute, account);
+        return this.httpClient.post(this.accountsRoute, account);
     }
     
     delete(id): Observable<any> {
-        return this.httpClient.delete(this.accountRoute + '/' + id);
+        return this.httpClient.delete(this.accountsRoute + '/' + id);
     }
     
     balance(): Observable<any> {
@@ -34,6 +32,6 @@ export class AccountService {
     }
     
     transfer(body): Observable<any> {
-        return this.httpClient.post(this.accountRoute + '/transfer', body);
+        return this.httpClient.post(this.accountsRoute + '/transfer', body);
     }
 }

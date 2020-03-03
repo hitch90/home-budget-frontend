@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IncomeService } from '../../services/income.service';
-import { CategoryService } from '../../services/category.service';
 import { AccountService } from '../../services/account.service';
 
 @Component({

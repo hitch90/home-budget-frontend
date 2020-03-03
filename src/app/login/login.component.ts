@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     saveAuth() {
         const loginData = this.authForm.getRawValue();
         this.authService.login(loginData).subscribe(data => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
         });
     }
 }

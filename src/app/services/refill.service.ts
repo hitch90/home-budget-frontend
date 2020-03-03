@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IExpanse } from '../interfaces/expanse';
-import dayjs = require('dayjs');
+import * as dayjs from 'dayjs';
 import { IRefill } from '../interfaces/refill';
 
 @Injectable({

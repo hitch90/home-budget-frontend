@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Observable } from 'rxjs';
 import { AccountService } from '../../services/account.service';
-import dayjs = require('dayjs');
+import * as dayjs from 'dayjs';
 import { RefillService } from 'src/app/services/refill.service';
 
 @Component({

@@ -4,7 +4,7 @@ import { ExpenseService } from '../../services/expense.service';
 import { CategoryService } from '../../services/category.service';
 import { Observable } from 'rxjs';
 import { AccountService } from '../../services/account.service';
-import dayjs = require('dayjs');
+import * as dayjs from 'dayjs';
 
 @Component({
     selector: 'app-expense-form',
