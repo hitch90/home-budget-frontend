@@ -4,8 +4,11 @@
             <app-balance [balance]="formatVal(this.balance)" [isLoading]="balanceLoading"></app-balance>
             <app-stats [expense]="expenses"></app-stats>
         </div>
-        <div class="dashboard__chart">
-            
+        <div class="dashboard__accounts">
+            <app-account></app-account>
+        </div>
+        <div class="dashboard__categories">
+            <app-categories [categories]="categories"></app-categories>
         </div>
     </div>
 </div>

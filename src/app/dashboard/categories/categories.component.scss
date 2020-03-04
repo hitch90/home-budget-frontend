@@ -1,0 +1,21 @@
+.categories {
+    color: var(--text-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    &__item {
+        background: #fff;
+        padding: 10px;
+        margin: 0 10px;
+    }
+    &__name {
+        font: 800 18px/1.4 'Spartan';
+        margin-bottom: 15px;
+        padding: 0;
+        grid-column: span 2;
+        color: var(--text-color);
+    }
+    &__val {
+        font: 800 14px/1.4 'Spartan';
+        margin: 0 0 10px;
+    }
+}

@@ -6,9 +6,11 @@ import { BalanceComponent } from './balance/balance.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {SharedModule} from '../shared/shared.module';
 import { StatsComponent } from './stats/stats.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule, FontAwesomeModule, SharedModule],
-    declarations: [DashboardComponent, BalanceComponent, StatsComponent]
+    declarations: [DashboardComponent, BalanceComponent, StatsComponent, CategoriesComponent, AccountComponent]
 })
 export class DashboardModule {}
