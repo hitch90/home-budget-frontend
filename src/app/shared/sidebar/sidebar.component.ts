@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { sidebarMenu } from './sidebar';
+import { AuthenticationService } from '../../services/authentication.service';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,7 +11,16 @@ import { sidebarMenu } from './sidebar';
 })
 export class SidebarComponent implements OnInit {
     menu = sidebarMenu;
-    constructor() {}
+    signout = faSignOutAlt;
+    $currentUser;
+    constructor(private authService: AuthenticationService, private router: Router) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.$currentUser = this.authService.currentUser;
+    }
+    
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+    }
 }

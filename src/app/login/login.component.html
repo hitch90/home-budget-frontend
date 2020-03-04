@@ -1,37 +1,32 @@
 <div class="login">
-    <h2 class="login__title">
-        Zaloguj się
-    </h2>
-    <div class="forms" [formGroup]="authForm">
+    <form (ngSubmit)="login()" class="forms" [formGroup]="authForm">
         <div class="forms__container">
             <h2 class="forms__title">
-                Zaloguj się aby uzyskać dostęp
+                Zaloguj się
             </h2>
-            <mat-form-field class="input">
+            <mat-form-field class="input" appearance="outline">
                 <mat-label>Użytkownik</mat-label>
                 <input
                     type="text"
                     name="username"
-                    id="username"
                     formControlName="username"
                     matInput
                 />
             </mat-form-field>
-            <mat-form-field class="input">
+            <mat-form-field class="input" appearance="outline">
                 <mat-label>Hasło</mat-label>
                 <input
                     type="password"
                     name="password"
-                    id="password"
                     autocomplete="new-password"
                     formControlName="password"
                     matInput
                 />
             </mat-form-field>
-            <button class="button button--primary button--block" (click)="saveAuth()">
+            <button class="forms__button">
                 Zaloguj się
             </button>
         </div>
-    </div>
+    </form>
 
 </div>

@@ -1,79 +1,36 @@
 .login {
-    background: var(--white);
-    padding: 20px;
-    margin: 20px auto;
-    width: 100%;
-    max-width: 300px;
-    &__title {
-        font-size: 11px;
-        font-weight: 500;
-        font-family: 'Montserrat', sans-serif;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        padding: 0 0 15px;
-        color: var(--dashboard-widget-title-color);
-    }
-    .input {
-        background-color: #fff;
-        position: relative;
-        border: 1px solid rgba(0, 0, 0, 0.07);
-        border-radius: 2px;
-        width: 100%;
-        transition: background-color 0.2s ease;
-        padding: 7px 12px 4px;
-        margin: 0 0 20px;
-        .input-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        label {
-            width: 100%;
-            font-family: 'Montserrat';
-            font-size: 10.5px;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            font-weight: 500;
-            line-height: 10px;
-            margin: 0;
-            padding: 0;
-        }
-        input, select {
-            display: block;
-            width: 100%;
-            border: none;
-            min-height: 25px;
-            margin-top: 0;
-            background-color: #fff;
-            color: #2c2c2c;
-            outline: 0;
-            line-height: normal;
-            font-size: 14px;
-            font-weight: 400;
-            vertical-align: middle;
-            transition: all 0.12s ease;
-            box-shadow: none;
-            padding: 0 3px;
-        }
-    }
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .05);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    transform: translateY(-50%);
+    max-height: 100%;
 }
 .forms {
-    padding: 20px;
-    &-title {
+    padding: 50px 30px;
+    &__title {
         display: block;
-        font: 800 36px/1.4 'Roboto Condensed', sans-serif;
+        font: 800 26px/1.4 'Spartan', sans-serif;
         margin: 10px 0 20px;
+        color: var(--link-hover);
+        text-align: center;
+    }
+    &__button {
+        display: block;
+        width: 100%;
+        background: #425AE4;
+        color: #fff;
+        text-align: center;
+        font: 600 14px/45px 'Spartan', sans-serif;
+        border: 0;
+        border-radius: 3px;
+
     }
 }
 .input {
     width: 100%;
-}
-.input-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    width: 100%;
-    .input {
-        width: auto;
-    }
 }

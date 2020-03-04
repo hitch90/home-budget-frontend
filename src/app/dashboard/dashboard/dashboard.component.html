@@ -1,7 +1,11 @@
 <div class="dashboard">
     <div class="dashboard__grid">
         <div class="dashboard__balance">
-            <app-balance [balance]="formatVal()" [isLoading]="balanceLoading"></app-balance>
+            <app-balance [balance]="formatVal(this.balance)" [isLoading]="balanceLoading"></app-balance>
+            <app-stats [expense]="expenses"></app-stats>
+        </div>
+        <div class="dashboard__chart">
+            
         </div>
     </div>
 </div>

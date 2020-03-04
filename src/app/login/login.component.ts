@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    saveAuth() {
+    login() {
         const loginData = this.authForm.getRawValue();
         this.authService.login(loginData).subscribe(data => {
             this.router.navigate(['/dashboard']);
