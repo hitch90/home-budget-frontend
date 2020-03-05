@@ -19,24 +19,6 @@ export class ExpenseService {
         return this.httpClient.get(this.expensesRoute + `?limit=${limit}`);
     }
 
-    findByDates(from, to) {
-        return this.httpClient.get(
-            this.expensesRoute + `?date_start=${from}&date_end=${to}`
-        );
-    }
-
-    findByAccount(id) {
-        return this.httpClient.get(this.expensesRoute + `?account=${id}`);
-    }
-
-    findByCategory(id) {
-        return this.httpClient.get(this.expensesRoute + `?category=${id}`);
-    }
-
-    findByMonth(month) {
-        return this.httpClient.get(this.expensesRoute + `?month=${month}`);
-    }
-
     findOne(id: number): Observable<any> {
         return this.httpClient.get(this.expenseRoute + '/' + id);
     }
@@ -49,16 +31,19 @@ export class ExpenseService {
         return this.httpClient.delete(this.expenseRoute + `/${id}`);
     }
 
-    getExpenses(filters) {
-        const objectArray = Object.entries(filters);
-        let query = '?filters=true';
-        objectArray.forEach(([key, value], index) => {
-            let val: any = value;
-            if (key === 'from' || key === 'to') {
-                val = dayjs(val).format('YYYY-MM-DD');
-            }
-            query = `${query}&${key}=${val}`;
-        });
+    getExpenses(filters = null) {
+        let query = '';
+        if (filters !== null) {
+            const objectArray = Object.entries(filters);
+            query = '?filters=true';
+            objectArray.forEach(([key, value], index) => {
+                query = `${query}&${key}=${value}`;
+            });
+        }
         return this.httpClient.get(this.expensesRoute + query);
+    }
+    
+    getExpensesInMonths() {
+        return this.httpClient.get(this.expensesRoute + '/months');
     }
 }

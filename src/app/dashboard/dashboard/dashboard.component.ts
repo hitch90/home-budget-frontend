@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { formatValue } from '../../helpers/format-value';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { ExpenseService } from '../../services/expense.service';
 import { CategoryService } from '../../services/category.service';
 import { map } from 'rxjs/operators';
 import { ICategory } from '../../interfaces/category';
+import { IncomeService } from '../../services/income.service';
+import {IExpanse} from '../../interfaces/expanse';
 
 interface MonthYear {
     month: number;
@@ -22,19 +24,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
     balance = 0;
     balanceLoading = true;
     expenses$: Subscription;
+    incomes$: Subscription;
     expenses = {
+        current: 0,
+        last: 0
+    };
+    incomes = {
         current: 0,
         last: 0
     };
     categories$: Subscription;
     categories: ICategory[];
     accounts$: Subscription;
-    accounts = []; //IAccounts[];
+    accounts = [];
     saving = [];
+    monthsData = {
+        incomes: [],
+        expenses: [],
+        balance: []
+    };
+    expensesList: IExpanse[];
     constructor(
         private accountService: AccountService,
         private expenseService: ExpenseService,
-        private categoryService: CategoryService,
+        private incomeService: IncomeService,
+        private categoryService: CategoryService
     ) {}
 
     ngOnInit(): void {
@@ -42,17 +56,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.balance = data;
             this.balanceLoading = false;
         });
-        this.accountService.findAll().subscribe(acc => {
-            
-        });
+        this.accountService.findAll().subscribe(acc => {});
         this.getCurrentMonthExpensesSum();
         this.getLastMonthExpensesSum();
         this.getCategories();
         this.getAccounts();
+        this.getBalanceInMonths();
+        this.expenseService.getExpenses({ limit: 10 }).subscribe((data: any) => {
+            console.log(data);
+            this.expensesList = data.expenses;
+        });
     }
 
     ngOnDestroy(): void {
         this.balance$.unsubscribe();
+    }
+
+    getBalanceInMonths() {
+        combineLatest(
+            this.expenseService.getExpensesInMonths(),
+            this.incomeService.getIncomesInMonths()
+        ).subscribe(([expenses, incomes]: any) => {
+            const balance = [];
+            expenses.map((item, index) => {
+                balance[index] = incomes[index] - item;
+            });
+            this.monthsData.expenses = expenses;
+            this.monthsData.incomes = incomes;
+            this.monthsData.balance = balance;
+        });
     }
 
     getCurrentMonthExpensesSum(): void {
@@ -70,6 +102,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             .getExpenses({ month: month + 1, year })
             .subscribe(data => {
                 this.expenses[key] = this.formatVal(data['sum']);
+            });
+        this.incomes$ = this.incomeService
+            .getIncomes({ month: month + 1, year })
+            .subscribe(data => {
+                this.incomes[key] = this.formatVal(data['sum']);
             });
     }
 
@@ -111,14 +148,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 this.categories = data;
             });
     }
-    
-    getAccounts() {
-        this.accounts$ = this.accountService.findAll({ type: 'private' }).subscribe(data => {
-            this.accounts = data;
-        });
 
-        this.accounts$ = this.accountService.findAll({ type: 'saving' }).subscribe(data => {
-            this.saving = data;
-        });
+    getAccounts() {
+        this.accounts$ = this.accountService
+            .findAll({ type: 'private' })
+            .subscribe(data => {
+                this.accounts = data;
+            });
+
+        this.accounts$ = this.accountService
+            .findAll({ type: 'saving' })
+            .subscribe(data => {
+                this.saving = data;
+            });
     }
-} 
+}

@@ -2,9 +2,15 @@
     <div class="dashboard__grid">
         <div class="dashboard__balance">
             <app-balance [balance]="formatVal(this.balance)" [isLoading]="balanceLoading"></app-balance>
-            <app-stats [expense]="expenses"></app-stats>
+            <app-stats [expense]="expenses" [income]="incomes"></app-stats>
             <div class="dashboard__categories">
                 <app-categories [categories]="categories"></app-categories>
+            </div>
+        </div>
+        <div class="dashboard__chart">
+            <app-chart [data]="monthsData"></app-chart>
+            <div class="dashboard__expenses">
+                <app-expense *ngFor="let expense of expensesList"></app-expense>
             </div>
         </div>
         <div class="dashboard__accounts">

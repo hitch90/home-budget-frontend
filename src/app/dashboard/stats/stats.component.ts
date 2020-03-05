@@ -13,7 +13,7 @@ interface IExpense {
 })
 export class StatsComponent implements OnInit {
     @Input() expense: IExpense;
-    @Input() income;
+    @Input() income: IExpense;
     
     iconDown = faArrowDown;
     iconUp = faArrowUp;

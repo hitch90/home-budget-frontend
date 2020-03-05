@@ -17,22 +17,6 @@ export class IncomeService {
         return this.httpClient.get(this.incomesRoute + `?limit=${limit}`);
     }
     
-    findByDates(from, to) {
-        return this.httpClient.get(this.incomesRoute + `?date_start=${from}&date_end=${to}`);
-    }
-
-    findByMonth(month) {
-        return this.httpClient.get(this.incomesRoute + `?month=${month}`);
-    }
-    
-    findByCategory(id) {
-        return this.httpClient.get(this.incomesRoute + `?category=${id}`);
-    }
-    
-    findOne(id: number) {
-        return this.httpClient.get(this.incomeRoute + '/' + id);
-    }
-    
     delete(id: number) {
         return this.httpClient.delete(this.incomeRoute + `/${id}`);
     }
@@ -41,7 +25,7 @@ export class IncomeService {
         return this.httpClient.post(this.incomeRoute, income);
     }
 
-    getByFilters(filters) {
+    getIncomes(filters) {
         const objectArray = Object.entries(filters);
         let query = '?filters=true';
         objectArray.forEach(([key, value], index) => {
@@ -52,5 +36,9 @@ export class IncomeService {
             query = `${query}&${key}=${val}`;
         });
         return this.httpClient.get(this.incomesRoute + query);
+    }
+    
+    getIncomesInMonths() {
+        return this.httpClient.get(this.incomesRoute + '/months');
     }
 }
