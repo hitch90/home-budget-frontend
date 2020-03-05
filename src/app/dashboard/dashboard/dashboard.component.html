@@ -3,12 +3,20 @@
         <div class="dashboard__balance">
             <app-balance [balance]="formatVal(this.balance)" [isLoading]="balanceLoading"></app-balance>
             <app-stats [expense]="expenses"></app-stats>
+            <div class="dashboard__categories">
+                <app-categories [categories]="categories"></app-categories>
+            </div>
         </div>
         <div class="dashboard__accounts">
-            <app-account></app-account>
+            <h2 class="dashboard__title">
+                Konta zakupowe
+            </h2>
+            <app-account *ngFor="let acc of accounts" [account]="acc"></app-account>
+            <h2 class="dashboard__title">
+                Konta oszczędnościowe
+            </h2>
+            <app-account *ngFor="let acc of saving" [account]="acc"></app-account>
         </div>
-        <div class="dashboard__categories">
-            <app-categories [categories]="categories"></app-categories>
-        </div>
+        
     </div>
 </div>

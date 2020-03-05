@@ -28,7 +28,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
     categories$: Subscription;
     categories: ICategory[];
-
+    accounts$: Subscription;
+    accounts = []; //IAccounts[];
+    saving = [];
     constructor(
         private accountService: AccountService,
         private expenseService: ExpenseService,
@@ -42,10 +44,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
         this.accountService.findAll().subscribe(acc => {
             
-        })
+        });
         this.getCurrentMonthExpensesSum();
         this.getLastMonthExpensesSum();
         this.getCategories();
+        this.getAccounts();
     }
 
     ngOnDestroy(): void {
@@ -70,7 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             });
     }
 
-    private formatVal(val): number {
+    formatVal(val): number {
         return formatValue(val);
     }
 
@@ -108,4 +111,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 this.categories = data;
             });
     }
-}
+    
+    getAccounts() {
+        this.accounts$ = this.accountService.findAll({ type: 'private' }).subscribe(data => {
+            this.accounts = data;
+        });
+
+        this.accounts$ = this.accountService.findAll({ type: 'saving' }).subscribe(data => {
+            this.saving = data;
+        });
+    }
+} 
