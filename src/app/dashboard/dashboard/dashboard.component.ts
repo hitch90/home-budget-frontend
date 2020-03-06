@@ -7,7 +7,7 @@ import { CategoryService } from '../../services/category.service';
 import { map } from 'rxjs/operators';
 import { ICategory } from '../../interfaces/category';
 import { IncomeService } from '../../services/income.service';
-import {IExpanse} from '../../interfaces/expanse';
+import * as dayjs from 'dayjs';
 
 interface MonthYear {
     month: number;
@@ -43,7 +43,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         expenses: [],
         balance: []
     };
-    expensesList: IExpanse[];
+    expensesList = {
+        today: { expenses: [], sum: 0 },
+        yesterday: { expenses: [], sum: 0 },
+        dayBeforeYesterday: { expenses: [], sum: 0 }
+    };
     constructor(
         private accountService: AccountService,
         private expenseService: ExpenseService,
@@ -62,14 +66,50 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.getCategories();
         this.getAccounts();
         this.getBalanceInMonths();
-        this.expenseService.getExpenses({ limit: 10 }).subscribe((data: any) => {
-            console.log(data);
-            this.expensesList = data.expenses;
-        });
+        this.getExpensesFrom3Days();
     }
 
     ngOnDestroy(): void {
         this.balance$.unsubscribe();
+    }
+
+    getExpensesFrom3Days() {
+        const today = {
+            from: dayjs().format('YYYY-MM-DD 00:00:00'),
+            to: dayjs().format('YYYY-MM-DD 23:59:59')
+        };
+        const yesterday = {
+            from: dayjs()
+                .add(-1, 'day')
+                .format('YYYY-MM-DD 00:00:00'),
+            to: dayjs()
+                .add(-1, 'day')
+                .format('YYYY-MM-DD 23:59:59')
+        };
+        const dayBeforeYesterday = {
+            from: dayjs()
+                .add(-4, 'day')
+                .format('YYYY-MM-DD 00:00:00'),
+            to: dayjs()
+                .add(-2, 'day')
+                .format('YYYY-MM-DD 23:59:59')
+        };
+        combineLatest(
+            this.expenseService.getExpenses({ from: today.from, to: today.to }),
+            this.expenseService.getExpenses({
+                from: yesterday.from,
+                to: yesterday.to
+            }),
+            this.expenseService.getExpenses({
+                from: dayBeforeYesterday.from,
+                to: dayBeforeYesterday.to
+            })
+        ).subscribe(([todayRes, yesterdayRes, dayBeforeYesterdayRes]: any) => {
+            this.expensesList.today = todayRes;
+            this.expensesList.yesterday = yesterdayRes;
+            this.expensesList.dayBeforeYesterday = dayBeforeYesterdayRes;
+        });
+        console.log(this.expensesList);
     }
 
     getBalanceInMonths() {

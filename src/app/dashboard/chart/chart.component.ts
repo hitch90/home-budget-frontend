@@ -30,7 +30,7 @@ export class ChartComponent implements OnInit, DoCheck {
         ],
         chart: {
             type: 'line',
-            height: 300,
+            height: 200,
             dropShadow: {
                 enabled: true,
                 color: '#008FFB',
