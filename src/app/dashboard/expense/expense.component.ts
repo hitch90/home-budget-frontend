@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IExpanse } from '../../interfaces/expanse';
 
 @Component({
@@ -6,11 +6,7 @@ import { IExpanse } from '../../interfaces/expanse';
     templateUrl: './expense.component.html',
     styleUrls: ['./expense.component.scss']
 })
-export class ExpenseComponent implements OnInit {
+export class ExpenseComponent {
     @Input() expense: IExpanse;
     constructor() {}
-
-    ngOnInit(): void {
-        console.log(this.expense);
-    }
 }

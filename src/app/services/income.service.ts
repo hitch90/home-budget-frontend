@@ -25,16 +25,18 @@ export class IncomeService {
         return this.httpClient.post(this.incomeRoute, income);
     }
 
-    getIncomes(filters) {
-        const objectArray = Object.entries(filters);
+    getIncomes(filters = null) {
         let query = '?filters=true';
-        objectArray.forEach(([key, value], index) => {
-            let val: any = value;
-            if (key === 'from' || key === 'to') {
-                val = dayjs(val).format('YYYY-MM-DD');
-            }
-            query = `${query}&${key}=${val}`;
-        });
+        if (filters !== null) {
+            const objectArray = Object.entries(filters);
+            objectArray.forEach(([key, value], index) => {
+                let val: any = value;
+                if (key === 'from' || key === 'to') {
+                    val = dayjs(val).format('YYYY-MM-DD');
+                }
+                query = `${query}&${key}=${val}`;
+            });
+        }
         return this.httpClient.get(this.incomesRoute + query);
     }
     

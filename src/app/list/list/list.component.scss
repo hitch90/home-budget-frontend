@@ -1,0 +1,10 @@
+.list {
+    font: 400 12px/1.4 'Lato';
+}
+
+::ng-deep {
+    .datatable-header-cell-label {
+        font: 600 14px/1.4 'Spartan';
+        color: var(--link-hover);
+    }
+}

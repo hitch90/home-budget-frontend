@@ -1,0 +1,12 @@
+<div *ngIf="!loading" class="list">
+    <ngx-datatable
+        class="material"
+        [rows]="expenses.expenses"
+        [columns]="columns"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="10"
+    >
+    </ngx-datatable>
+</div>

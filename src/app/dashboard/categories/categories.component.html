@@ -4,7 +4,7 @@
             {{ cat.name }}
         </h2>
         <h3 class="categories__val">
-            {{ cat.sum }}
+            {{ formatVal(cat.sum || 0) }}
         </h3>
     </div>
 </div>

@@ -29,6 +29,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@swimlane/ngx-datatable": "^16.0.3",
     "@zeit/ng-deploy": "^0.3.0",
     "angular-chart.js": "^1.1.1",
     "apexcharts": "^3.12.0",

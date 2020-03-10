@@ -14,6 +14,8 @@ import { JwtInterceptor } from './services/jwt-interceptor';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {DashboardRoutingModule} from './dashboard/dashboard-routing.module';
+import {ListRoutingModule} from './list/list-routing.module';
+import {ListModule} from './list/list.module';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent],
@@ -31,6 +33,8 @@ import {DashboardRoutingModule} from './dashboard/dashboard-routing.module';
         /* app modules */
         DashboardModule,
         DashboardRoutingModule,
+        ListRoutingModule,
+        ListModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

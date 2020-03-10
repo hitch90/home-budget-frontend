@@ -1,16 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ICategory} from '../../interfaces/category';
+import { Component, Input, OnInit } from '@angular/core';
+import { ICategory } from '../../interfaces/category';
+import { formatValue } from '../../helpers/format-value';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+    selector: 'app-categories',
+    templateUrl: './categories.component.html',
+    styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
     @Input() categories: ICategory[];
-  constructor() { }
+    constructor() {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 
+    formatVal(val) {
+        return formatValue(val);
+    }
 }

@@ -10,19 +10,19 @@ export const sidebarMenu = [
     {
         id: 1,
         name: 'Wydatki',
-        url: '/expenses',
+        url: '/list/expenses',
         icon: faFileInvoiceDollar
     },
     {
         id: 2,
         name: 'Przychody',
-        url: '/incomes',
+        url: '/list/incomes',
         icon: faChartLine
     },
     {
         id: 3,
         name: 'Paliwo',
-        url: '/refill',
+        url: '/list/refill',
         icon: faRoute
     },
     {
