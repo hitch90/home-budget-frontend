@@ -20,12 +20,12 @@
                     </h3>
                     <div
                         class="dashboard__info"
-                        *ngIf="expensesList.today.expenses.length === 0"
+                        *ngIf="expensesList.today.list.length === 0"
                     >
                         Brak wydatków
                     </div>
                     <app-expense
-                        *ngFor="let expense of expensesList.today.expenses"
+                        *ngFor="let expense of expensesList.today.list"
                         [expense]="expense"
                     ></app-expense>
                 </div>
@@ -36,12 +36,12 @@
                     </h3>
                     <div
                         class="dashboard__info"
-                        *ngIf="expensesList.yesterday.expenses.length === 0"
+                        *ngIf="expensesList.yesterday.list.length === 0"
                     >
                         Brak wydatków
                     </div>
                     <app-expense
-                        *ngFor="let expense of expensesList.yesterday.expenses"
+                        *ngFor="let expense of expensesList.yesterday.list"
                         [expense]="expense"
                     ></app-expense>
                 </div>
@@ -52,12 +52,12 @@
                     </h3>
                     <div
                         class="dashboard__info"
-                        *ngIf="expensesList.dayBeforeYesterday.expenses.length === 0"
+                        *ngIf="expensesList.dayBeforeYesterday.list.length === 0"
                     >
                         Brak wydatków
                     </div>
                     <app-expense
-                        *ngFor="let expense of expensesList.dayBeforeYesterday.expenses"
+                        *ngFor="let expense of expensesList.dayBeforeYesterday.list"
                         [expense]="expense"
                     ></app-expense>
                 </div>

@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         balance: []
     };
     expensesList = {
-        today: { expenses: [], sum: 0 },
-        yesterday: { expenses: [], sum: 0 },
-        dayBeforeYesterday: { expenses: [], sum: 0 }
+        today: { list: [], sum: 0 },
+        yesterday: { list: [], sum: 0 },
+        dayBeforeYesterday: { list: [], sum: 0 }
     };
     constructor(
         private accountService: AccountService,
@@ -109,7 +109,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.expensesList.yesterday = yesterdayRes;
             this.expensesList.dayBeforeYesterday = dayBeforeYesterdayRes;
         });
-        console.log(this.expensesList);
     }
 
     getBalanceInMonths() {
@@ -184,7 +183,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data: any) => {
-                console.log(data);
                 this.categories = data;
             });
     }

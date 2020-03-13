@@ -16,4 +16,12 @@ export class CategoriesComponent implements OnInit {
     formatVal(val) {
         return formatValue(val);
     }
+    
+    getMonth() {
+        return new Date().getMonth() + 1;
+    }
+
+    getYear() {
+        return new Date().getFullYear();
+    }
 }

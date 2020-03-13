@@ -1,5 +1,10 @@
 <div class="categories">
-    <div class="categories__item" *ngFor="let cat of categories">
+    <div
+        class="categories__item"
+        *ngFor="let cat of categories"
+        [routerLink]="['/list', 'expenses']"
+        [queryParams]="{ category: cat.id, month: getMonth(), year: getYear() }"
+    >
         <h2 class="categories__name">
             {{ cat.name }}
         </h2>
